@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".HomePageFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textAlignment="center">
+
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="170dp"
+            android:layout_height="155dp"
+            android:src="@drawable/blogphoto3"
+            tools:layout_editor_absoluteX="-5dp"
+            tools:layout_editor_absoluteY="1301dp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="168dp"
+            android:layout_height="149dp"
+            android:src="@drawable/blogphoto1"
+            tools:layout_editor_absoluteX="-5dp"
+            tools:layout_editor_absoluteY="954dp" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="437dp"
+            android:layout_height="40dp"
+            android:background="#4F772D"
+            android:text="Blogs"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="-12dp"
+            tools:layout_editor_absoluteY="891dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4F772D"
+            android:src="@drawable/icons8_camera_50"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="86dp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="171dp"
+            android:layout_height="150dp"
+            android:src="@drawable/blogphoto2"
+            tools:layout_editor_absoluteX="-5dp"
+            tools:layout_editor_absoluteY="1126dp" />
+
+        <SearchView
+            android:layout_width="493dp"
+            android:layout_height="80dp"
+            tools:layout_editor_absoluteX="-15dp"
+            tools:layout_editor_absoluteY="-10dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4F772D"
+            android:src="@drawable/icons8_plant_50"
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="86dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4F772D"
+            android:src="@drawable/icons8_medical_50"
+            tools:layout_editor_absoluteX="289dp"
+            tools:layout_editor_absoluteY="86dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="430dp"
+            android:layout_height="38dp"
+            android:background="#4F772D"
+            android:backgroundTint="#4F772D"
+            android:text="Today's Care"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="-22dp"
+            tools:layout_editor_absoluteY="193dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="125dp"
+            android:layout_height="144dp"
+            android:src="@drawable/sunflower"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="247dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="117dp"
+            android:layout_height="167dp"
+            android:src="@drawable/orchid"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="407dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Sunflower"
+            tools:layout_editor_absoluteX="137dp"
+            tools:layout_editor_absoluteY="263dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Orchid"
+            tools:layout_editor_absoluteX="143dp"
+            tools:layout_editor_absoluteY="423dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Watering"
+            tools:layout_editor_absoluteX="143dp"
+            tools:layout_editor_absoluteY="298dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Watering and Fertilizing"
+            tools:layout_editor_absoluteX="125dp"
+            tools:layout_editor_absoluteY="458dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Watered"
+            tools:layout_editor_absoluteX="132dp"
+            tools:layout_editor_absoluteY="325dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Watered"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="511dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Fertilized"
+            tools:layout_editor_absoluteX="228dp"
+            tools:layout_editor_absoluteY="510dp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="135dp"
+            android:layout_height="38dp"
+            android:backgroundTint="#4F772D"
+            android:text="Settings"
+            tools:layout_editor_absoluteX="256dp"
+            tools:layout_editor_absoluteY="263dp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="134dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#4F772D"
+            android:text="Settings"
+            tools:layout_editor_absoluteX="257dp"
+            tools:layout_editor_absoluteY="421dp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="437dp"
+            android:layout_height="38dp"
+            android:background="#4F772D"
+            android:text="Gardening Tips"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="-12dp"
+            tools:layout_editor_absoluteY="625dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="361dp"
+            android:layout_height="159dp"
+            android:background="#4F772D"
+            android:fontFamily="sans-serif-medium"
+            android:text="Water your plants early in the morning to reduce evaporation and give them time to absorb moisture before the heat of the day."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="18dp"
+            tools:layout_editor_absoluteY="679dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
