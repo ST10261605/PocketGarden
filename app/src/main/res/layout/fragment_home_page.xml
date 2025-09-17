@@ -15,6 +15,14 @@
         android:textAlignment="center">
 
 
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="145dp"
+            android:layout_height="112dp"
+            android:text="Tackling Weeds and Saving Your Back"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="1317dp" />
+
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="170dp"
@@ -180,8 +188,8 @@
             android:layout_height="38dp"
             android:backgroundTint="#4F772D"
             android:text="Settings"
-            tools:layout_editor_absoluteX="256dp"
-            tools:layout_editor_absoluteY="263dp" />
+            tools:layout_editor_absoluteX="244dp"
+            tools:layout_editor_absoluteY="262dp" />
 
         <Button
             android:id="@+id/button5"
@@ -189,7 +197,7 @@
             android:layout_height="37dp"
             android:backgroundTint="#4F772D"
             android:text="Settings"
-            tools:layout_editor_absoluteX="257dp"
+            tools:layout_editor_absoluteX="244dp"
             tools:layout_editor_absoluteY="421dp" />
 
         <TextView
@@ -215,6 +223,46 @@
             android:textColor="#FFFFFF"
             tools:layout_editor_absoluteX="18dp"
             tools:layout_editor_absoluteY="679dp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="159dp"
+            android:layout_height="90dp"
+            android:text="7 Ways to Help Your Plants Survive a Heat Wave"
+            tools:layout_editor_absoluteX="181dp"
+            tools:layout_editor_absoluteY="970dp" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="153dp"
+            android:layout_height="100dp"
+            android:text="Ageratum Monarch Magic- Butterfly Magnet"
+            tools:layout_editor_absoluteX="182dp"
+            tools:layout_editor_absoluteY="1142dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="66dp"
+            android:layout_height="51dp"
+            android:src="@drawable/icons8_link_50"
+            tools:layout_editor_absoluteX="290dp"
+            tools:layout_editor_absoluteY="1040dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton6"
+            android:layout_width="67dp"
+            android:layout_height="66dp"
+            android:src="@drawable/icons8_link_50"
+            tools:layout_editor_absoluteX="298dp"
+            tools:layout_editor_absoluteY="1212dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icons8_link_50"
+            tools:layout_editor_absoluteX="298dp"
+            tools:layout_editor_absoluteY="1374dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
