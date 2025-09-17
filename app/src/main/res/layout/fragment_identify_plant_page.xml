@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".IdentifyPlantPageFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+
+        <SearchView
+            android:layout_width="394dp"
+            android:layout_height="48dp"
+            tools:layout_editor_absoluteX="-12dp"
+            tools:layout_editor_absoluteY="4dp" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="382dp"
+            android:layout_height="37dp"
+            android:background="#4F772D"
+            android:fontFamily="sans-serif-medium"
+            android:text="Plant Identified!"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="-3dp"
+            tools:layout_editor_absoluteY="84dp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="207dp"
+            android:layout_height="228dp"
+            android:src="@drawable/tulip"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="129dp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="96dp"
+            android:layout_height="28dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Tulip"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="373dp" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="128dp"
+            android:layout_height="23dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Latin Name: Tulipa"
+            android:textAlignment="center"
+            android:textColor="#5D5E5D"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="409dp" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="104dp"
+            android:layout_height="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Information"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="462dp" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="130dp"
+            android:layout_height="25dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Toxicity to Humans"
+            android:textColor="#4F772D"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="502dp" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="28dp"
+            android:layout_height="26dp"
+            android:background="#4F772D"
+            android:src="@android:drawable/ic_dialog_alert"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="502dp" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="271dp"
+            android:layout_height="38dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Toxic, tulip bulbs are the most poisonous part of the plant."
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="535dp" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Toxicity to Animals"
+            android:textColor="#4F772D"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="602dp" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="27dp"
+            android:layout_height="29dp"
+            android:background="#4F772D"
+            android:src="@android:drawable/ic_dialog_alert"
+            tools:layout_editor_absoluteX="141dp"
+            tools:layout_editor_absoluteY="597dp" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toxic to cats and dogs"
+            android:fontFamily="sans-serif-medium"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="637dp" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Plant Type"
+            android:textColor="#4F772D"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="698dp" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="110dp"
+            android:layout_height="20dp"
+            android:text="Flower"
+            android:fontFamily="sans-serif-medium"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="724dp" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lifespan"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#4F772D"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="775dp" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perennial"
+            android:fontFamily="sans-serif-medium"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="800dp" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="383dp"
+            android:layout_height="38dp"
+            android:background="#4F772D"
+            android:text="Care Guide"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="-2dp"
+            tools:layout_editor_absoluteY="878dp" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Sunlight"
+            android:textColor="#4F772D"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="942dp" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Full Sun"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="969dp" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Water Level"
+            android:textColor="#4F772D"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="1022dp" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Medium"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="1047dp" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="175dp"
+            android:layout_height="26dp"
+            android:background="#DEDCFF"
+            android:fontFamily="sans-serif-black"
+            android:text="Pruning Season(s):"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="1095dp" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="175dp"
+            android:layout_height="43dp"
+            android:background="#DEDCFF"
+            android:text="Spring, Summer, Autumn"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="1124dp" />
+
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="172dp"
+            android:layout_height="21dp"
+            android:background="#DEDCFF"
+            android:fontFamily="sans-serif-black"
+            android:text="Repotting:"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="95dp"
+            tools:layout_editor_absoluteY="1203dp" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="177dp"
+            android:layout_height="41dp"
+            android:background="#DEDCFF"
+            android:text="Start of growing season"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="92dp"
+            tools:layout_editor_absoluteY="1227dp" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="189dp"
+            android:layout_height="41dp"
+            android:backgroundTint="#4F772D"
+            android:text="Save plant to garden"
+            tools:layout_editor_absoluteX="86dp"
+            tools:layout_editor_absoluteY="1303dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
