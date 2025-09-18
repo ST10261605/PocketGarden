@@ -13,6 +13,41 @@
         android:padding="16dp">
 
 
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="29dp"
+            android:layout_height="33dp"
+            android:src="@drawable/icons8_fertilizer_50"
+            tools:layout_editor_absoluteX="347dp"
+            tools:layout_editor_absoluteY="789dp" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="29dp"
+            android:layout_height="38dp"
+            android:src="@drawable/icons8_watering_can_50"
+            tools:layout_editor_absoluteX="348dp"
+            tools:layout_editor_absoluteY="744dp" />
+
+        <Button
+            android:id="@+id/button18"
+            android:layout_width="204dp"
+            android:layout_height="38dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Fertilizer Reminder"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="789dp" />
+
+        <TextView
+            android:id="@+id/textView49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Orchid"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:layout_editor_absoluteX="142dp"
+            tools:layout_editor_absoluteY="686dp" />
+
         <SearchView
             android:layout_width="382dp"
             android:layout_height="49dp"
@@ -34,10 +69,10 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="114dp"
-            android:layout_height="123dp"
+            android:layout_width="123dp"
+            android:layout_height="149dp"
             android:src="@drawable/tulip"
-            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteX="-4dp"
             tools:layout_editor_absoluteY="133dp" />
 
         <TextView
@@ -60,5 +95,229 @@
             android:textStyle="italic"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="172dp" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="206dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Water Reminder"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="127dp"
+            tools:layout_editor_absoluteY="197dp" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="205dp"
+            android:layout_height="36dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Fertilizer Reminder"
+            tools:layout_editor_absoluteX="127dp"
+            tools:layout_editor_absoluteY="238dp" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="139dp"
+            android:layout_height="150dp"
+            android:src="@drawable/sunflower"
+            tools:layout_editor_absoluteX="-11dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="106dp"
+            android:layout_height="35dp"
+            android:backgroundTint="#C01316"
+            android:text="Remove"
+            tools:layout_editor_absoluteX="267dp"
+            tools:layout_editor_absoluteY="133dp" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="29dp"
+            android:layout_height="35dp"
+            android:src="@drawable/icons8_fertilizer_50"
+            tools:layout_editor_absoluteX="348dp"
+            tools:layout_editor_absoluteY="238dp" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="28dp"
+            android:layout_height="32dp"
+            android:src="@drawable/icons8_watering_can_50"
+            tools:layout_editor_absoluteX="348dp"
+            tools:layout_editor_absoluteY="199dp" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Sunflower"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="325dp" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Helianthus annus"
+            android:textStyle="italic"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="356dp" />
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="198dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Water Reminder"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="384dp" />
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="200dp"
+            android:layout_height="36dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Fertilizer Reminder"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="424dp" />
+
+        <Button
+            android:id="@+id/button14"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#C01316"
+            android:text="Remove"
+            tools:layout_editor_absoluteX="268dp"
+            tools:layout_editor_absoluteY="315dp" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:src="@drawable/icons8_watering_can_50"
+            tools:layout_editor_absoluteX="342dp"
+            tools:layout_editor_absoluteY="382dp" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="29dp"
+            android:layout_height="31dp"
+            android:src="@drawable/icons8_fertilizer_50"
+            tools:layout_editor_absoluteX="342dp"
+            tools:layout_editor_absoluteY="425dp" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="163dp"
+            android:layout_height="173dp"
+            android:src="@drawable/jasmine"
+            tools:layout_editor_absoluteX="-34dp"
+            tools:layout_editor_absoluteY="489dp" />
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Jasmine"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="513dp" />
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Jasminum officinale"
+            android:textStyle="italic"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="542dp" />
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="195dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Water Reminder"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="570dp" />
+
+        <Button
+            android:id="@+id/button15"
+            android:layout_width="197dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Fertilizer Reminder"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="613dp" />
+
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="115dp"
+            android:layout_height="36dp"
+            android:backgroundTint="#C01316"
+            android:text="Remove"
+            tools:layout_editor_absoluteX="260dp"
+            tools:layout_editor_absoluteY="505dp" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="33dp"
+            android:layout_height="32dp"
+            android:src="@drawable/icons8_watering_can_50"
+            tools:layout_editor_absoluteX="342dp"
+            tools:layout_editor_absoluteY="570dp" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="31dp"
+            android:layout_height="33dp"
+            android:src="@drawable/icons8_fertilizer_50"
+            tools:layout_editor_absoluteX="344dp"
+            tools:layout_editor_absoluteY="618dp" />
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="137dp"
+            android:layout_height="183dp"
+            android:src="@drawable/orchid"
+            tools:layout_editor_absoluteX="-11dp"
+            tools:layout_editor_absoluteY="686dp" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Orchideae"
+            android:textStyle="italic"
+            tools:layout_editor_absoluteX="143dp"
+            tools:layout_editor_absoluteY="718dp" />
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="202dp"
+            android:layout_height="39dp"
+            android:backgroundTint="#4F772D"
+            android:text="Set Water Reminder"
+            tools:layout_editor_absoluteX="140dp"
+            tools:layout_editor_absoluteY="746dp" />
+
+        <Button
+            android:id="@+id/button19"
+            android:layout_width="105dp"
+            android:layout_height="38dp"
+            android:backgroundTint="#C01316"
+            android:text="Remove"
+            tools:layout_editor_absoluteX="266dp"
+            tools:layout_editor_absoluteY="690dp" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
