@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MyGardenFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+
+        <SearchView
+            android:layout_width="382dp"
+            android:layout_height="49dp"
+            tools:layout_editor_absoluteX="-5dp"
+            tools:layout_editor_absoluteY="4dp" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="380dp"
+            android:layout_height="33dp"
+            android:background="#4F772D"
+            android:fontFamily="sans-serif-medium"
+            android:text="My Garden"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="-6dp"
+            tools:layout_editor_absoluteY="84dp" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="114dp"
+            android:layout_height="123dp"
+            android:src="@drawable/tulip"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="133dp" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Tulip"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:layout_editor_absoluteX="138dp"
+            tools:layout_editor_absoluteY="140dp" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Tulipa"
+            android:textStyle="italic"
+            tools:layout_editor_absoluteX="139dp"
+            tools:layout_editor_absoluteY="172dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
