@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".SettingsPageFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+
+        <SearchView
+            android:layout_width="396dp"
+            android:layout_height="51dp"
+            tools:layout_editor_absoluteX="-12dp"
+            tools:layout_editor_absoluteY="-5dp" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="384dp"
+            android:layout_height="35dp"
+            android:background="#4F772D"
+
+            android:fontFamily="sans-serif-medium"
+            android:text="Settings and More"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="-7dp"
+            tools:layout_editor_absoluteY="82dp" />
+
+        <ImageView
+            android:id="@+id/imageView22"
+            android:layout_width="42dp"
+            android:layout_height="43dp"
+            android:src="@drawable/icons8_watering_can_50"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="166dp" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="43dp"
+            android:layout_height="47dp"
+            android:src="@drawable/icons8_global_50"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="225dp" />
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="46dp"
+            android:layout_height="56dp"
+            android:src="@drawable/icons8_biometric_64"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="288dp" />
+
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="51dp"
+            android:layout_height="54dp"
+            android:src="@drawable/icons8_notifications_64"
+            tools:layout_editor_absoluteX="-2dp"
+            tools:layout_editor_absoluteY="360dp" />
+
+        <ImageView
+            android:id="@+id/imageView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icons8_user_48"
+            tools:layout_editor_absoluteX="-3dp"
+            tools:layout_editor_absoluteY="430dp" />
+
+        <ImageView
+            android:id="@+id/imageView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icons8_user_48"
+            tools:layout_editor_absoluteX="-3dp"
+            tools:layout_editor_absoluteY="494dp" />
+
+        <Button
+            android:id="@+id/button20"
+            android:layout_width="260dp"
+            android:layout_height="36dp"
+            android:backgroundTint="#4F772D"
+            android:text="Water Calculator"
+            android:textAlignment="viewStart"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="167dp" />
+
+        <Button
+            android:id="@+id/button21"
+            android:layout_width="263dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#4F772D"
+            android:text="Enable Fingerprint Authentication"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="295dp" />
+
+        <Button
+            android:id="@+id/button22"
+            android:layout_width="260dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#4F772D"
+            android:text="Notifications"
+            android:textAlignment="viewStart"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="369dp" />
+
+        <Button
+            android:id="@+id/button23"
+            android:layout_width="260dp"
+            android:layout_height="38dp"
+            android:backgroundTint="#4F772D"
+            android:text="Logout"
+            android:textAlignment="viewStart"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="438dp" />
+
+        <Button
+            android:id="@+id/button24"
+            android:layout_width="260dp"
+            android:layout_height="37dp"
+            android:backgroundTint="#4F772D"
+            android:text="Update Profile Information"
+            android:textAlignment="viewStart"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="500dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
