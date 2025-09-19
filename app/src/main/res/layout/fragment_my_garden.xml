@@ -17,306 +17,371 @@
             android:id="@+id/imageView21"
             android:layout_width="29dp"
             android:layout_height="33dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="7dp"
             android:src="@drawable/icons8_fertilizer_50"
-            tools:layout_editor_absoluteX="347dp"
-            tools:layout_editor_absoluteY="789dp" />
+            app:layout_constraintStart_toEndOf="@+id/button18"
+            app:layout_constraintTop_toBottomOf="@+id/imageView20" />
 
         <ImageView
             android:id="@+id/imageView20"
             android:layout_width="29dp"
             android:layout_height="38dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
             android:src="@drawable/icons8_watering_can_50"
-            tools:layout_editor_absoluteX="348dp"
-            tools:layout_editor_absoluteY="744dp" />
+            app:layout_constraintBottom_toTopOf="@+id/button18"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/button18"
             android:layout_width="204dp"
             android:layout_height="38dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="42dp"
             android:backgroundTint="#4F772D"
             android:text="Set Fertilizer Reminder"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="789dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView21" />
 
         <TextView
             android:id="@+id/textView49"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="69dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-black"
             android:text="Orchid"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="686dp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView50"
+            app:layout_constraintEnd_toStartOf="@+id/button19" />
 
         <SearchView
+            android:id="@+id/searchView2"
             android:layout_width="382dp"
             android:layout_height="49dp"
-            tools:layout_editor_absoluteX="-5dp"
-            tools:layout_editor_absoluteY="4dp" />
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView42"
             android:layout_width="380dp"
             android:layout_height="33dp"
+            android:layout_marginTop="30dp"
             android:background="#4F772D"
             android:fontFamily="sans-serif-medium"
             android:text="My Garden"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
-            tools:layout_editor_absoluteX="-6dp"
-            tools:layout_editor_absoluteY="84dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView2" />
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="123dp"
             android:layout_height="149dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/tulip"
-            tools:layout_editor_absoluteX="-4dp"
-            tools:layout_editor_absoluteY="133dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
         <TextView
             android:id="@+id/textView43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="23dp"
             android:fontFamily="sans-serif-black"
             android:text="Tulip"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tools:layout_editor_absoluteX="138dp"
-            tools:layout_editor_absoluteY="140dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
         <TextView
             android:id="@+id/textView44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
             android:text="Tulipa"
             android:textStyle="italic"
-            tools:layout_editor_absoluteX="139dp"
-            tools:layout_editor_absoluteY="172dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="206dp"
             android:layout_height="37dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
             android:backgroundTint="#4F772D"
             android:text="Set Water Reminder"
             android:textAlignment="center"
-            tools:layout_editor_absoluteX="127dp"
-            tools:layout_editor_absoluteY="197dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
         <Button
             android:id="@+id/button9"
             android:layout_width="205dp"
             android:layout_height="36dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="3dp"
             android:backgroundTint="#4F772D"
             android:text="Set Fertilizer Reminder"
-            tools:layout_editor_absoluteX="127dp"
-            tools:layout_editor_absoluteY="238dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/button8" />
 
         <ImageView
             android:id="@+id/imageView13"
             android:layout_width="139dp"
             android:layout_height="150dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/sunflower"
-            tools:layout_editor_absoluteX="-11dp"
-            tools:layout_editor_absoluteY="323dp" />
+            app:layout_constraintEnd_toStartOf="@+id/button11"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
         <Button
             android:id="@+id/button10"
             android:layout_width="106dp"
             android:layout_height="35dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#C01316"
             android:text="Remove"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="133dp" />
+            app:layout_constraintStart_toEndOf="@+id/textView43"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
         <ImageView
             android:id="@+id/imageView11"
             android:layout_width="29dp"
             android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
             android:src="@drawable/icons8_fertilizer_50"
-            tools:layout_editor_absoluteX="348dp"
-            tools:layout_editor_absoluteY="238dp" />
+            app:layout_constraintStart_toEndOf="@+id/button9"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
         <ImageView
             android:id="@+id/imageView12"
             android:layout_width="28dp"
             android:layout_height="32dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="31dp"
             android:src="@drawable/icons8_watering_can_50"
-            tools:layout_editor_absoluteX="348dp"
-            tools:layout_editor_absoluteY="199dp" />
+            app:layout_constraintStart_toEndOf="@+id/button8"
+            app:layout_constraintTop_toBottomOf="@+id/button10" />
 
         <TextView
             android:id="@+id/textView45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="46dp"
             android:fontFamily="sans-serif-black"
             android:text="Sunflower"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tools:layout_editor_absoluteX="128dp"
-            tools:layout_editor_absoluteY="325dp" />
+            app:layout_constraintEnd_toStartOf="@+id/button14"
+            app:layout_constraintTop_toBottomOf="@+id/button9" />
 
         <TextView
             android:id="@+id/textView46"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="148dp"
             android:fontFamily="sans-serif-medium"
             android:text="Helianthus annus"
             android:textStyle="italic"
-            tools:layout_editor_absoluteX="128dp"
-            tools:layout_editor_absoluteY="356dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
         <Button
             android:id="@+id/button11"
             android:layout_width="198dp"
             android:layout_height="37dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="13dp"
             android:backgroundTint="#4F772D"
             android:text="Set Water Reminder"
-            tools:layout_editor_absoluteX="128dp"
-            tools:layout_editor_absoluteY="384dp" />
+            app:layout_constraintEnd_toStartOf="@+id/imageView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
         <Button
             android:id="@+id/button12"
             android:layout_width="200dp"
             android:layout_height="36dp"
+            android:layout_marginStart="10dp"
             android:backgroundTint="#4F772D"
             android:text="Set Fertilizer Reminder"
-            tools:layout_editor_absoluteX="128dp"
-            tools:layout_editor_absoluteY="424dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView13"
+            app:layout_constraintTop_toBottomOf="@+id/button11" />
 
         <Button
             android:id="@+id/button14"
             android:layout_width="104dp"
             android:layout_height="37dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="15dp"
             android:backgroundTint="#C01316"
             android:text="Remove"
-            tools:layout_editor_absoluteX="268dp"
-            tools:layout_editor_absoluteY="315dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button9" />
 
         <ImageView
             android:id="@+id/imageView14"
             android:layout_width="30dp"
             android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/icons8_watering_can_50"
-            tools:layout_editor_absoluteX="342dp"
-            tools:layout_editor_absoluteY="382dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button14" />
 
         <ImageView
             android:id="@+id/imageView15"
             android:layout_width="29dp"
             android:layout_height="31dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/icons8_fertilizer_50"
-            tools:layout_editor_absoluteX="342dp"
-            tools:layout_editor_absoluteY="425dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
         <ImageView
             android:id="@+id/imageView16"
             android:layout_width="163dp"
             android:layout_height="173dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="7dp"
             android:src="@drawable/jasmine"
-            tools:layout_editor_absoluteX="-34dp"
-            tools:layout_editor_absoluteY="489dp" />
+            app:layout_constraintEnd_toStartOf="@+id/textView47"
+            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
         <TextView
             android:id="@+id/textView47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="49dp"
+            android:layout_marginBottom="4dp"
             android:fontFamily="sans-serif-black"
             android:text="Jasmine"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="513dp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView48"
+            app:layout_constraintEnd_toStartOf="@+id/button16" />
 
         <TextView
             android:id="@+id/textView48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="120dp"
+            android:layout_marginBottom="9dp"
             android:fontFamily="sans-serif-medium"
             android:text="Jasminum officinale"
             android:textStyle="italic"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="542dp" />
+            app:layout_constraintBottom_toTopOf="@+id/button13"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/button13"
             android:layout_width="195dp"
             android:layout_height="37dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="6dp"
             android:backgroundTint="#4F772D"
             android:text="Set Water Reminder"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="570dp" />
+            app:layout_constraintBottom_toTopOf="@+id/button15"
+            app:layout_constraintEnd_toStartOf="@+id/imageView17" />
 
         <Button
             android:id="@+id/button15"
             android:layout_width="197dp"
             android:layout_height="37dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="41dp"
             android:backgroundTint="#4F772D"
             android:text="Set Fertilizer Reminder"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="613dp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView49"
+            app:layout_constraintEnd_toStartOf="@+id/imageView18" />
 
         <Button
             android:id="@+id/button16"
             android:layout_width="115dp"
             android:layout_height="36dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
             android:backgroundTint="#C01316"
             android:text="Remove"
-            tools:layout_editor_absoluteX="260dp"
-            tools:layout_editor_absoluteY="505dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button12" />
 
         <ImageView
             android:id="@+id/imageView17"
             android:layout_width="33dp"
             android:layout_height="32dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/icons8_watering_can_50"
-            tools:layout_editor_absoluteX="342dp"
-            tools:layout_editor_absoluteY="570dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button16" />
 
         <ImageView
             android:id="@+id/imageView18"
             android:layout_width="31dp"
             android:layout_height="33dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/icons8_fertilizer_50"
-            tools:layout_editor_absoluteX="344dp"
-            tools:layout_editor_absoluteY="618dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
         <ImageView
             android:id="@+id/imageView19"
             android:layout_width="137dp"
             android:layout_height="183dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/orchid"
-            tools:layout_editor_absoluteX="-11dp"
-            tools:layout_editor_absoluteY="686dp" />
+            app:layout_constraintEnd_toStartOf="@+id/button18"
+            app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
         <TextView
             android:id="@+id/textView50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="59dp"
+            android:layout_marginBottom="11dp"
             android:fontFamily="sans-serif-medium"
             android:text="Orchideae"
             android:textStyle="italic"
-            tools:layout_editor_absoluteX="143dp"
-            tools:layout_editor_absoluteY="718dp" />
+            app:layout_constraintBottom_toTopOf="@+id/button17"
+            app:layout_constraintEnd_toStartOf="@+id/button19" />
 
         <Button
             android:id="@+id/button17"
             android:layout_width="202dp"
             android:layout_height="39dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="2dp"
             android:backgroundTint="#4F772D"
             android:text="Set Water Reminder"
-            tools:layout_editor_absoluteX="140dp"
-            tools:layout_editor_absoluteY="746dp" />
+            app:layout_constraintBottom_toTopOf="@+id/button18"
+            app:layout_constraintEnd_toStartOf="@+id/imageView21" />
 
         <Button
             android:id="@+id/button19"
             android:layout_width="105dp"
             android:layout_height="38dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="#C01316"
             android:text="Remove"
-            tools:layout_editor_absoluteX="266dp"
-            tools:layout_editor_absoluteY="690dp" />
+            app:layout_constraintBottom_toTopOf="@+id/imageView20"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
