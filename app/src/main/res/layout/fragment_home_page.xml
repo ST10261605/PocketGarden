@@ -55,10 +55,12 @@
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="17dp"
             android:backgroundTint="#4F772D"
             android:src="@drawable/icons8_camera_50"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="86dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView3" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -69,41 +71,48 @@
             tools:layout_editor_absoluteY="1126dp" />
 
         <SearchView
-            android:layout_width="493dp"
-            android:layout_height="80dp"
-            tools:layout_editor_absoluteX="-15dp"
-            tools:layout_editor_absoluteY="-10dp" />
+            android:id="@+id/searchView3"
+            android:layout_width="413dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="17dp"
             android:backgroundTint="#4F772D"
             android:src="@drawable/icons8_plant_50"
-            tools:layout_editor_absoluteX="160dp"
-            tools:layout_editor_absoluteY="86dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintTop_toBottomOf="@+id/searchView3" />
 
         <ImageButton
             android:id="@+id/imageButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="17dp"
             android:backgroundTint="#4F772D"
             android:src="@drawable/icons8_medical_50"
-            tools:layout_editor_absoluteX="289dp"
-            tools:layout_editor_absoluteY="86dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageButton3"
+            app:layout_constraintTop_toBottomOf="@+id/searchView3" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="430dp"
             android:layout_height="38dp"
+            android:layout_marginTop="38dp"
             android:background="#4F772D"
             android:backgroundTint="#4F772D"
             android:text="Today's Care"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
-            tools:layout_editor_absoluteX="-22dp"
-            tools:layout_editor_absoluteY="193dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
         <ImageView
             android:id="@+id/imageView2"
