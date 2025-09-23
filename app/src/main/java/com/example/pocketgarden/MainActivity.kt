@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val getStarted = findViewById<Button?>(R.id.button2)
+        val getStarted = findViewById<Button?>(R.id.getStartedbtn)
         getStarted.setOnClickListener(View.OnClickListener { v: View? ->
             val intent = Intent(this@MainActivity, HomeActivity::class.java)
             startActivity(intent)
-            finish() // optional: closes splash so user can’t go back
+            finish()
         })
     }
 }

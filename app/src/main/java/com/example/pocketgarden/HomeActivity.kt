@@ -15,7 +15,7 @@ class HomeActivity : AppCompatActivity() {
         if(savedInstanceState == null)
         {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,HomePageFragment())
+                .replace(R.id.fragment_container, SignUpFragment())
                 .commit()
         }
     }

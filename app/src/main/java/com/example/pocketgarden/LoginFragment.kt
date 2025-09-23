@@ -1,10 +1,16 @@
 package com.example.pocketgarden
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +26,8 @@ class LoginFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var db: AppDatabase
+    private lateinit var userDao: UserDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +43,40 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false)
+    }
+
+    override fun onViewCreated(view:View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        db = AppDatabase.getDatabase(requireContext())
+        userDao = db.userDao()
+
+        val emailEdit = view.findViewById<EditText>(R.id.editTextTextEmailAddress2)
+        val passwordEdit = view.findViewById<EditText>(R.id.editTextTextPassword2)
+        val loginButton = view.findViewById<Button>(R.id.Loginbtn)
+
+        loginButton.setOnClickListener {
+            val email = emailEdit.text.toString()
+            val password = passwordEdit.text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                lifecycleScope.launch {
+                    val user = userDao.getUserByEmail(email) // fetch user from DB
+                    Log.d("SignUpFragment", "User inserted: $user")
+
+                    if (user != null && user.password == password) {
+                        // Login successful, navigate to home
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, HomePageFragment())
+                            .commit()
+                    } else {
+                        Toast.makeText(requireContext(), "Invalid email or password", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            } else {
+                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     companion object {

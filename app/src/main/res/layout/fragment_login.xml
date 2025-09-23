@@ -67,13 +67,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Loginbtn"
         android:layout_width="232dp"
         android:layout_height="46dp"
         android:layout_marginStart="84dp"
         android:layout_marginTop="84dp"
         android:backgroundTint="#4F772D"
-        android:text="Continue"
+        android:text="Login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
 
