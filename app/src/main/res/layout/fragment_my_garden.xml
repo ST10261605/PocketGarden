@@ -383,6 +383,12 @@
             app:layout_constraintBottom_toTopOf="@+id/imageView20"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="408dp"
+            android:layout_height="58dp"
+            tools:layout_editor_absoluteX="-10dp"
+            tools:layout_editor_absoluteY="934dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

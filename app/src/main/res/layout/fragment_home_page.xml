@@ -273,6 +273,12 @@
             tools:layout_editor_absoluteX="298dp"
             tools:layout_editor_absoluteY="1374dp" />
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="414dp"
+            android:layout_height="66dp"
+            tools:layout_editor_absoluteX="-15dp"
+            tools:layout_editor_absoluteY="1487dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

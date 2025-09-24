@@ -322,6 +322,12 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="137dp" />
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="420dp"
+            android:layout_height="69dp"
+            tools:layout_editor_absoluteX="-21dp"
+            tools:layout_editor_absoluteY="1361dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
