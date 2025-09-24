@@ -24,7 +24,6 @@
             android:layout_width="384dp"
             android:layout_height="35dp"
             android:background="#4F772D"
-
             android:fontFamily="sans-serif-medium"
             android:text="Settings and More"
             android:textAlignment="center"
@@ -129,6 +128,24 @@
             android:textAlignment="viewStart"
             tools:layout_editor_absoluteX="67dp"
             tools:layout_editor_absoluteY="500dp" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Set Language"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="241dp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="193dp"
+            android:layout_height="36dp"
+            android:background="#4F772D"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="185dp"
+            tools:layout_editor_absoluteY="232dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
