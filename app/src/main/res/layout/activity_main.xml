@@ -29,7 +29,8 @@
         android:textColor="@color/white"
         tools:layout_editor_absoluteX="75dp"
         tools:layout_editor_absoluteY="371dp"
-        app:/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/getStartedbtn"

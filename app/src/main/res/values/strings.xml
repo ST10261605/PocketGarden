@@ -2,4 +2,6 @@
     <string name="app_name">PocketGarden</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Google Client ID -->
+    <string name="default_web_client_id">240577956919-94ff3o38oamd301s88evchmrs5e8a0fv.apps.googleusercontent.com</string>
 </resources>

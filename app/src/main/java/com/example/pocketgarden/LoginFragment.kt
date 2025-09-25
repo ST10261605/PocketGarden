@@ -1,7 +1,6 @@
 package com.example.pocketgarden
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import android.content.Intent
+import android.util.Log
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +34,11 @@ class LoginFragment : Fragment() {
     private var param2: String? = null
     private lateinit var db: AppDatabase
     private lateinit var userDao: UserDAO
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+    private lateinit var googleSignInLauncher: androidx.activity.result.ActivityResultLauncher<Intent>
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +58,17 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view:View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         db = AppDatabase.getDatabase(requireContext())
         userDao = db.userDao()
 
+
+        setupEmailPasswordLogin(view)
+        setupGoogleLogin(view)
+    }
+
+    private fun setupEmailPasswordLogin(view: View)
+    {
         val emailEdit = view.findViewById<EditText>(R.id.editTextTextEmailAddress2)
         val passwordEdit = view.findViewById<EditText>(R.id.editTextTextPassword2)
         val loginButton = view.findViewById<Button>(R.id.Loginbtn)
@@ -61,7 +80,6 @@ class LoginFragment : Fragment() {
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 lifecycleScope.launch {
                     val user = userDao.getUserByEmail(email) // fetch user from DB
-                    Log.d("SignUpFragment", "User inserted: $user")
 
                     if (user != null && user.password == password) {
                         // Login successful, navigate to home
@@ -69,15 +87,60 @@ class LoginFragment : Fragment() {
                             .replace(R.id.fragment_container, HomePageFragment())
                             .commit()
                     } else {
-                        Toast.makeText(requireContext(), "Invalid email or password", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            requireContext(),
+                            "Invalid email or password",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
                 }
             } else {
-                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
+
+    private fun setupGoogleLogin(view: View)
+    {
+        val googleBtn = view.findViewById<SignInButton>(R.id.GoogleSignInbtn)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(),gso)
+
+        googleSignInLauncher = registerForActivityResult(
+            androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
+            ){ result ->
+                    val data = result.data
+                    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                    try{
+                        val account = task.getResult(ApiException::class.java)
+                        val email = account.email
+                        val name = account?.displayName
+                        Toast.makeText(requireContext(),"Welcome $name!", Toast.LENGTH_SHORT).show()
+                        navigateToHome()
+                    }catch (e: ApiException)
+                    {
+                        Log.w("LoginFragment", "Google sign in failed",e)
+                        Toast.makeText(requireContext(), "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        googleBtn.setOnClickListener{
+            val signInIntent = googleSignInClient.signInIntent
+            googleSignInLauncher.launch(signInIntent)
+        }
+    }
+    private fun navigateToHome()
+    {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, HomePageFragment())
+            .commit()
+    }
+
 
     companion object {
         /**

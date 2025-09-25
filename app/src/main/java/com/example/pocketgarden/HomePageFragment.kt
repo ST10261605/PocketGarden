@@ -5,6 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +27,9 @@ class HomePageFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,6 +45,32 @@ class HomePageFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_page, container, false)
     }
+
+    // Inside HomePageFragment.kt
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Initialize GoogleSignInClient
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        val googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+        val signOutButton = view.findViewById<Button>(R.id.signOutBtn)
+
+        signOutButton.setOnClickListener {
+            // Remove Google account
+            googleSignInClient.revokeAccess().addOnCompleteListener {
+                Toast.makeText(requireContext(), "Account removed. Please select an account next time.", Toast.LENGTH_SHORT).show()
+
+                // Navigate back to LoginFragment
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, LoginFragment())
+                    .commit()
+            }
+        }
+    }
+
 
     companion object {
         /**

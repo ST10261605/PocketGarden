@@ -79,6 +79,14 @@ class SignUpFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
+        val alreadyHaveBtn = view.findViewById<Button>(R.id.AlreadyHaveAnAccountbtn)
+        alreadyHaveBtn.setOnClickListener {
+            // Navigate to LoginFragment
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, LoginFragment())
+                .addToBackStack(null) // optional: allows the user to press back
+                .commit()
+        }
     }
 
     companion object {
