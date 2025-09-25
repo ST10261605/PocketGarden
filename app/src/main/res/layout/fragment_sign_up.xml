@@ -98,4 +98,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="264dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="34dp"
+        android:backgroundTint="#4F772D"
+        android:text="Already have an Account? Login In"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignUpBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
