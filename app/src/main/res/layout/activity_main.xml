@@ -13,23 +13,23 @@
         android:id="@+id/imageView"
         android:layout_width="426dp"
         android:layout_height="392dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pocketgarden_green_logo" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="286dp"
+        android:id="@+id/SplashScreenSubText"
+        android:layout_width="0dp"
         android:layout_height="37dp"
-        android:layout_marginEnd="52dp"
         android:fontFamily="sans-serif-black"
         android:text="A virtual garden with all your plant needs"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="364dp" />
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="371dp"
+        app:/>
 
     <Button
         android:id="@+id/getStartedbtn"
