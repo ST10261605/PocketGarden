@@ -23,12 +23,12 @@
         android:id="@+id/SplashScreenSubText"
         android:layout_width="0dp"
         android:layout_height="37dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="344dp"
         android:fontFamily="sans-serif-black"
         android:text="A virtual garden with all your plant needs"
         android:textAlignment="center"
         android:textColor="@color/white"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="371dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

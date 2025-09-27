@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -69,6 +70,39 @@ class HomePageFragment : Fragment() {
                     .commit()
             }
         }
+
+        //Navigation buttons
+        val identifyButton = view.findViewById<ImageButton>(R.id.imageButton2)
+        val gardenButton = view.findViewById<ImageButton>(R.id.imageButton3)
+        val diagnoseButton = view.findViewById<ImageButton>(R.id.imageButton4)
+        val settingsButton = view.findViewById<Button>(R.id.button4)
+
+        identifyButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, IdentifyPlantCameraFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        gardenButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, MyGardenFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        diagnoseButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, IdentifyPlantPageFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        settingsButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SettingsPageFragment())
+                .addToBackStack(null)
+                .commit();
+        }
+
     }
 
 
