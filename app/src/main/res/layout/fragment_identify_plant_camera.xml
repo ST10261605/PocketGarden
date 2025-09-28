@@ -7,22 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".IdentifyPlantCameraFragment">
 
-    <SurfaceView
-        android:layout_width="399dp"
-        android:layout_height="512dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="30dp"
+    <!-- CameraX preview -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="377dp"
+        android:layout_height="503dp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20">
-
-    </SurfaceView>
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="386dp"
         android:layout_height="39dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
         android:background="#31572C"
         android:fontFamily="sans-serif-medium"
         android:text="Identify Plant"

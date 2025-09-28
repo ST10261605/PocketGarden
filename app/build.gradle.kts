@@ -39,12 +39,21 @@ android {
 
 dependencies {
 
+    val camerax_version = "1.3.4"
+
+    //CameraX dependencies
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    implementation("androidx.camera:camera-view:${camerax_version}")
+
     //Google Sign in dependencies
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     //RoomDb dependencies
     implementation(libs.androidx.material3)
     implementation(libs.play.services.base)
+
     val room_version = "2.6.1"
 
     implementation ("androidx.room:room-runtime:$room_version")
