@@ -25,7 +25,7 @@ class IdentifyViewModel(private val repo: PlantRepository) : ViewModel() {
     fun identifyBase64(base64: String, details: String? = "common_names,taxonomy,watering,toxicity") {
         viewModelScope.launch {
             _uiState.value = IdentifyUiState.Loading
-            when (val result = repo.identifyPlantFromBitmapBase64(base64, details)) {
+            when (val result = repo.identifyPlantFromBitmapBase64V3(base64)) {
                 is IdentificationResult.Success -> {
                     _uiState.value = IdentifyUiState.Success(result.response)
                 }

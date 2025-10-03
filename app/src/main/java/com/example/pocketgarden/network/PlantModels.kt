@@ -3,13 +3,17 @@ package com.example.pocketgarden.network
 import com.google.gson.annotations.SerializedName
 
 // request the identification endpoint, post with images, latitude, longitude, date&time images were taken
-data class IdentificationRequest(
+data class IdentificationRequestV3(
     val images: List<String>,
+    val organs: List<String> = listOf("leaf"),       // optional: leaf, flower, fruit, stem
+    val include_related_images: Boolean = true,      // get related images
+    val modifiers: List<String>? = listOf("similar_images"), // optional
     val latitude: Double? = null,
     val longitude: Double? = null,
     val datetime: String? = null,
-    val modifiers: List<String>? = null // e.g. ["similar_images"]
+    val lang: String = "en"
 )
+
 
 // Response (trimmed to only the fields we use)
 data class IdentificationResponse(

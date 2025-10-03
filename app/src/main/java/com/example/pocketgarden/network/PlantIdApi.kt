@@ -9,11 +9,11 @@ import retrofit2.http.Query
 //plant.id api interface --> calling the identification endpoint with api key in header and
 //including details of identified plant
 interface PlantIdApi {
-    @POST("identify")
+    @POST("v3/identify")
     suspend fun identify(
         @Header("Api-Key") apiKey: String,
         @Query("details") details: String?,
-        @Body request: IdentificationRequest
+        @Body request: IdentificationRequestV3
     ): Response<IdentificationResponse>
 
     companion object {

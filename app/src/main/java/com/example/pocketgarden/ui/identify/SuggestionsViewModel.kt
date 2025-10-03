@@ -6,7 +6,7 @@ import com.example.pocketgarden.repository.PlantRepository
 import kotlinx.coroutines.launch
 
 class SuggestionsViewModel(
-    private val repo: PlantRepository
+    val repo: PlantRepository
 ) : ViewModel() {
 
     private val _suggestions = MutableLiveData<List<SuggestionUiModel>>()

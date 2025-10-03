@@ -1,12 +1,13 @@
 package com.example.pocketgarden.repository
 
 import android.content.Context
+import android.net.Uri
 import android.util.Base64
 import com.example.pocketgarden.AppDatabase
 import com.example.pocketgarden.data.local.PlantDAO
 import com.example.pocketgarden.data.local.PlantEntity
 import com.example.pocketgarden.network.PlantIdApi
-import com.example.pocketgarden.network.IdentificationRequest
+import com.example.pocketgarden.network.IdentificationRequestV3
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.InputStream
@@ -14,7 +15,7 @@ import java.io.InputStream
 class PlantRepository(
     private val api: PlantIdApi,
     private val plantDao: PlantDAO,
-    private val apiKeyProvider: ApiKeyProvider // interface to get API key or proxy URL
+    val apiKeyProvider: ApiKeyProvider // interface to get API key or proxy URL
 ) {
 
     //function to add a plant offline, the pending images are only sent for identification once user is back online
@@ -38,30 +39,60 @@ class PlantRepository(
                 val api = PlantIdApi.create()
                 val provider = object : ApiKeyProvider {
                     override fun getApiKey(): String = "mRnpO239bpQY3EcOGlxTgQ9GfXl2Krg6Xqqg4WhDkzzXEwSvlX"
+
                     override suspend fun readUriAsBase64(uriString: String): String {
-                        // implement reading file bytes + Base64.encodeToString
-                        return ""
+                        return withContext(Dispatchers.IO) {
+                            try {
+                                val uri = Uri.parse(uriString)
+                                val inputStream = context.contentResolver.openInputStream(uri)
+                                val bytes = inputStream?.readBytes() ?: ByteArray(0)
+                                android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                                ""
+                            }
+                        }
                     }
                 }
+
                 PlantRepository(api, dao, provider).also { INSTANCE = it }
             }
         }
     }
 
-    suspend fun identifyPlantFromBitmapBase64(base64: String, details: String?): IdentificationResult {
-        // Directly calling Plant.id using API key from provider
-        val key = apiKeyProvider.getApiKey()
+    suspend fun identifyPlantFromBitmapBase64V3(base64: String): IdentificationResult {
         return withContext(Dispatchers.IO) {
-            val request = IdentificationRequest(images = listOf(base64))
-            val resp = api.identify(key, details, request)
-            if (resp.isSuccessful) {
-                val body = resp.body()
-                IdentificationResult.Success(body)
-            } else {
-                IdentificationResult.Error(resp.code(), resp.message())
+            try {
+                // Build the v3 request
+                val request = IdentificationRequestV3(
+                    images = listOf(base64),
+                    modifiers = listOf("similar_images"),
+                    organs = listOf("leaf") // optional: you can add "flower", "fruit" etc.
+                )
+
+                // Call the Plant.id v3 API
+                val resp = api.identify(
+                    apiKey = apiKeyProvider.getApiKey(),
+                    details = null,
+                    request = request    // matches parameter type in PlantIdApi
+                )
+
+                if (resp.isSuccessful) {
+                    // Success! Return the body
+                    IdentificationResult.Success(resp.body())
+                } else {
+                    // API returned error
+                    val errorMsg = resp.errorBody()?.string() ?: "Unknown error"
+                    IdentificationResult.Error(resp.code(), errorMsg)
+                }
+            } catch (e: Exception) {
+                // Network or other exception
+                IdentificationResult.Error(-1, e.localizedMessage ?: "Exception occurred")
             }
         }
     }
+
+
 
     // Worker will call this to sync pending items:
     suspend fun syncPendingIdentifications(details: String?): List<Pair<Long, Boolean>> {
@@ -71,7 +102,7 @@ class PlantRepository(
             try {
                 // load file bytes from URI
                 val base64 = apiKeyProvider.readUriAsBase64(plant.imageUri)
-                val req = IdentificationRequest(images = listOf(base64))
+                val req = IdentificationRequestV3(images = listOf(base64))
                 val resp = api.identify(apiKeyProvider.getApiKey(), details, req)
                 if (resp.isSuccessful) {
                     val body = resp.body()
@@ -103,8 +134,6 @@ class PlantRepository(
 
     suspend fun getAllPlantsFlow() = plantDao.getAllPlants()
 }
-
-
 
 sealed class IdentificationResult {
     data class Success(val response: com.example.pocketgarden.network.IdentificationResponse?): IdentificationResult()
