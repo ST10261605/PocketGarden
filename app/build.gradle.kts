@@ -1,8 +1,10 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
-
 }
 
 android {
@@ -10,6 +12,9 @@ android {
     compileSdk = 36
 
     defaultConfig {
+
+        buildConfigField("String", "PLANT_ID_API_KEY", "\"mRnpO239bpQY3EcOGlxTgQ9GfXl2Krg6Xqqg4WhDkzzXEwSvlX\"")
+
         applicationId = "com.example.pocketgarden"
         minSdk = 26
         targetSdk = 36
@@ -17,6 +22,17 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Load API key from local.properties
+        val localProperties = Properties().apply {
+            load(FileInputStream(rootProject.file("local.properties")))
+        }
+        val apiKey: String = localProperties.getProperty("PLANT_ID_API_KEY") ?: ""
+        buildConfigField("String", "PLANT_ID_API_KEY", "\"$apiKey\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -60,6 +76,17 @@ dependencies {
     kapt ("androidx.room:room-compiler:$room_version")
 
     implementation("androidx.room:room-ktx:${room_version}")
+
+    //adding coroutines, gson, http and retrofit for plant.id API
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation ("androidx.work:work-runtime-ktx:2.8.1") // for background sync
+    implementation ("io.coil-kt:coil:2.3.0") // image loading
+
+    implementation("androidx.fragment:fragment-ktx:1.8.2") //for viewModels
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
