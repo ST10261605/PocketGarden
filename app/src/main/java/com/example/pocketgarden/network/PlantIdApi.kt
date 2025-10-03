@@ -9,15 +9,14 @@ import retrofit2.http.Query
 //plant.id api interface --> calling the identification endpoint with api key in header and
 //including details of identified plant
 interface PlantIdApi {
-    @POST("v3/identify")
+    @POST("identify")
     suspend fun identify(
         @Header("Api-Key") apiKey: String,
-        @Query("details") details: String?,
         @Body request: IdentificationRequestV3
     ): Response<IdentificationResponse>
 
     companion object {
-        private const val BASE_URL = "https://api.plant.id/v3/" // base URL
+        private const val BASE_URL = "https://api.plant.id/v2/" // base URL
 
         fun create(): PlantIdApi {
             val retrofit = retrofit2.Retrofit.Builder()

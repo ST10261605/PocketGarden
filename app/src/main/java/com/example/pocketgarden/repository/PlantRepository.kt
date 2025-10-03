@@ -73,7 +73,6 @@ class PlantRepository(
                 // Call the Plant.id v3 API
                 val resp = api.identify(
                     apiKey = apiKeyProvider.getApiKey(),
-                    details = null,
                     request = request    // matches parameter type in PlantIdApi
                 )
 
@@ -103,7 +102,7 @@ class PlantRepository(
                 // load file bytes from URI
                 val base64 = apiKeyProvider.readUriAsBase64(plant.imageUri)
                 val req = IdentificationRequestV3(images = listOf(base64))
-                val resp = api.identify(apiKeyProvider.getApiKey(), details, req)
+                val resp = api.identify(apiKeyProvider.getApiKey(), req)
                 if (resp.isSuccessful) {
                     val body = resp.body()
                     // choose top suggestion (if any)
