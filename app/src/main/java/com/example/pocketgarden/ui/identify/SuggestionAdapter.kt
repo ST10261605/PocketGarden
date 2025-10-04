@@ -42,8 +42,9 @@ class SuggestionAdapter(
     override fun getItemCount(): Int = suggestions.size
 }
 
-data class SuggestionUiModel(
-    val name: String,
-    val probability: Double,
-    val commonNames: List<String> = emptyList()
-)
+//data class SuggestionUiModel(
+//    val name: String,
+//    val probability: Double,
+//    val commonNames: List<String> = emptyList(),
+//    val imageUrl: String
+//)

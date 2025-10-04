@@ -23,6 +23,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.pocketgarden.data.local.PlantEntity
 import com.example.pocketgarden.repository.IdentificationResult
 import com.example.pocketgarden.repository.PlantRepository
+import com.example.pocketgarden.ui.identify.SuggestionUiModel
 import com.example.pocketgarden.ui.identify.SuggestionsFragment
 import kotlinx.coroutines.launch
 
@@ -36,7 +37,6 @@ class IdentifyPlantCameraFragment : Fragment() {
     private val plantRepository: PlantRepository by lazy {
         PlantRepository.getInstance(requireContext())
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -104,9 +104,7 @@ class IdentifyPlantCameraFragment : Fragment() {
             ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    output.savedUri?.let { uri ->
-                        handlePhotoSaved(uri)
-                    }
+                    output.savedUri?.let { uri -> handlePhotoSaved(uri) }
                 }
 
                 override fun onError(exc: ImageCaptureException) {
@@ -128,41 +126,64 @@ class IdentifyPlantCameraFragment : Fragment() {
                 val base64 = plantRepository.apiKeyProvider.readUriAsBase64(savedUri.toString())
 
                 // Identify
-                when (val result =
-                    plantRepository.identifyPlantFromBitmapBase64V3(base64)) {
+                when (val result = plantRepository.identifyPlantFromBitmapBase64V3(base64)) {
                     is IdentificationResult.Success -> {
                         val response = result.response
-                        val suggestion = response?.result?.classification?.suggestions?.firstOrNull()
-                        val name = suggestion?.plant_name ?: "Unknown plant"
 
+                        // map suggestions safely, including imageUrl extraction
+                        val suggestions = response?.result?.classification?.suggestions?.map { s ->
+                            val imageUrl = (s.details?.get("image") as? Map<*, *>)?.get("value") as? String
+                            SuggestionUiModel(
+                                name = s.plant_name ?: s.name ?: "Unknown",
+                                probability = s.probability ?: 0.0,
+                                commonNames = s.common_names ?: emptyList(),
+                                imageUrl = imageUrl ?: ""
+                            )
+                        } ?: emptyList()
+
+                        // Update local DB for first suggestion
+                        val firstSuggestion = suggestions.firstOrNull()
                         val updated = PlantEntity(
                             localId = localId,
                             remoteId = response?.id,
                             imageUri = savedUri.toString(),
-                            name = name,
+                            name = firstSuggestion?.name ?: "Unknown",
                             synced = true,
                             status = "IDENTIFIED"
                         )
                         plantRepository.savePlant(updated)
 
-                        // Navigate to suggestions manually
+                        // Pass suggestions to fragment
+                        val bundle = Bundle().apply {
+                            putSerializable("suggestions", ArrayList(suggestions))
+                        }
+                        val fragment = SuggestionsFragment().apply {
+                            arguments = bundle
+                        }
+
                         parentFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, SuggestionsFragment())
+                            .replace(R.id.fragment_container, fragment)
                             .addToBackStack(null)
                             .commit()
                     }
+
                     is IdentificationResult.Error -> {
-                        Toast.makeText(requireContext(),
+                        Toast.makeText(
+                            requireContext(),
                             "Identification failed: ${result.message}",
-                            Toast.LENGTH_LONG).show()
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(requireContext(),
+                Toast.makeText(
+                    requireContext(),
                     "Error: ${e.localizedMessage}",
-                    Toast.LENGTH_LONG).show()
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
+
 }

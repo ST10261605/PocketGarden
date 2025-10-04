@@ -37,6 +37,7 @@ data class Classification(
     val suggestions: List<Suggestion>?
 )
 
+
 //suggestion of what plant it could be - id, name, probability that it is plant, details and common names
 data class Suggestion(
     val id: Int?,

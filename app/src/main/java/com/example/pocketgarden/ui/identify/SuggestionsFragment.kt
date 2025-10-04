@@ -35,9 +35,17 @@ class SuggestionsFragment : Fragment() {
     ): View {
         val root = inflater.inflate(R.layout.screen_suggestions, container, false)
 
+        val suggestionsArg: ArrayList<SuggestionUiModel>? =
+            arguments?.getParcelableArrayList("suggestions")
+
+        suggestionsArg?.let {
+            viewModel.setSuggestions(it)
+        }
+
         val rv: RecyclerView = root.findViewById(R.id.rvSuggestions)
         val txtSelected: TextView = root.findViewById(R.id.tvSelected)
         val btnConfirm: Button = root.findViewById(R.id.btnConfirm)
+
 
         adapter = SuggestionAdapter(emptyList()) { suggestion ->
             viewModel.selectSuggestion(suggestion)
