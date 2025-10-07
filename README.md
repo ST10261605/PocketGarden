@@ -62,6 +62,9 @@ https://github.com/ST10261605/PocketGarden
 # GitHub Link
 https://github.com/ST10261605/PocketGarden
 
+# Demonstration Video
+https://youtu.be/dYUjv0y6c4A
+
 # Acknowledgements
 •	Fixing Error in Home Screen UI: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-b426-df5c28672738
 
