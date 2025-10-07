@@ -64,6 +64,9 @@ ST10261605/PocketGarden
 
 # Acknowledgements
 •	Fixing Error in Home Screen UI: Android Studio XML Processing Error Fix - DeepSeek
+
 •	Fixing UI Button Error: Fixing Button Color in Android Studio - DeepSeek
+
 •	Connecting with plant ID REST API through HTTP requests, converting API responses to Java or Kotlin objects, and enabling authentication and custom headers: https://www.geeksforgeeks.org/android/introduction-retofit-2-android-set-1/
+
 •	Integration of Google Sign-In: https://developers.google.com/identity/sign-in/web/sign-in
