@@ -8,6 +8,9 @@ interface PlantDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(plant: PlantEntity): Long
 
+    @Delete
+    suspend fun delete(plant: PlantEntity)
+
     @Update
     suspend fun update(plant: PlantEntity)
 
@@ -19,4 +22,5 @@ interface PlantDAO {
 
     @Query("SELECT * FROM plants WHERE localId = :id")
     suspend fun getPlantById(id: Long): PlantEntity?
+
 }

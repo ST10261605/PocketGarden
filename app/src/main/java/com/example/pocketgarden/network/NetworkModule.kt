@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkModule {
-    private const val BASE_URL = "https://api.plant.id/v3/" // this is the base URL of the API
+    private const val BASE_URL = "https://api.plant.id/v2/" // this is the base URL of the API
 
     //using retrofit as it allows us to connect with the plant.id REST API through HTTP requests
     //HTTP requests include GET, POST, DELETE, PUT, PATCH

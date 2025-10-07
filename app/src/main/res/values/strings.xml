@@ -4,4 +4,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Google Client ID -->
     <string name="default_web_client_id">240577956919-94ff3o38oamd301s88evchmrs5e8a0fv.apps.googleusercontent.com</string>
+
+    <string name="my_garden">My Garden</string>
+    <string name="no_plants_yet">No plants in your garden yet</string>
+    <string name="tap_camera_to_add">Tap the camera button to identify a plant</string>
+    <string name="empty_garden">Empty garden</string>
+    <string name="plant_image">Plant image</string>
+    <string name="plant_name">Plant Name</string>
+    <string name="water_reminder">Water</string>
+    <string name="fertilizer_reminder">Fertilize</string>
+    <string name="remove">Remove</string>
+    <string name="no_reminders_set">No reminders set</string>
 </resources>

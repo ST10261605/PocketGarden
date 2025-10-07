@@ -34,6 +34,12 @@ class PlantRepository(
         plantDao.insert(plant)
     }
 
+    suspend fun deletePlant(plant: PlantEntity) {
+        plantDao.delete(plant)
+    }
+
+    suspend fun getAllPlantsFlow() = plantDao.getAllPlants()
+
     companion object {
         @Volatile private var INSTANCE: PlantRepository? = null
 

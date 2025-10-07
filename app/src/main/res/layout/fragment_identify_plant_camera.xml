@@ -52,18 +52,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Test Button - Positioned next to the identify plant button -->
-    <Button
-        android:id="@+id/btnTestSample"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Sample"
-        android:textSize="12sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="29dp"
-        android:backgroundTint="#4ECDC4"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button6" />
+<!--    &lt;!&ndash; Test Button - Positioned next to the identify plant button &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btnTestSample"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Test Sample"-->
+<!--        android:textSize="12sp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginBottom="29dp"-->
+<!--        android:backgroundTint="#4ECDC4"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button6" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

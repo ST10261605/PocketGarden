@@ -60,13 +60,13 @@ class IdentifyPlantCameraFragment : Fragment() {
         previewView = view.findViewById(R.id.previewView)
         captureButton = view.findViewById(R.id.button6)
         galleryButton = view.findViewById(R.id.imageButton9)
-        testSampleButton = view.findViewById(R.id.btnTestSample)
+//        testSampleButton = view.findViewById(R.id.btnTestSample)
 
         startCamera()
 
         captureButton.setOnClickListener { takePhoto() }
         galleryButton.setOnClickListener { /* TODO: open gallery */ }
-        testSampleButton.setOnClickListener { testWithSamplePlant() }
+//        testSampleButton.setOnClickListener { testWithSamplePlant() }
     }
 
     private fun startCamera() {
@@ -136,93 +136,93 @@ class IdentifyPlantCameraFragment : Fragment() {
     }
 
     // testing
-    private fun testWithSamplePlant() {
-        Toast.makeText(requireContext(), "Testing with sample plant...", Toast.LENGTH_SHORT).show()
-
-        lifecycleScope.launch {
-            try {
-                Log.d("CameraFragment", "Loading sample plant image from resources...")
-
-                // Load sample image from raw resources
-                val inputStream = requireContext().resources.openRawResource(R.raw.sample_plant)
-                val bytes = inputStream.readBytes()
-                inputStream.close()
-
-                Log.d("CameraFragment", "Sample image size: ${bytes.size} bytes")
-
-                // Convert to PURE Base64 (no data URL prefix)
-                val base64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
-                Log.d("CameraFragment", "Pure base64 length: ${base64.length}")
-
-                // Identify the plant
-                when (val result = plantRepository.identifyPlantFromBitmapBase64V3(base64)) {
-                    is IdentificationResult.Success -> {
-                        val response = result.response
-                        Log.d("CameraFragment", "Sample plant identification successful!")
-
-                        // Map suggestions
-                        val suggestions = response?.result?.classification?.suggestions?.map { s ->
-                            SuggestionUiModel(
-                                name = s.name ?: "Unknown Plant",
-                                probability = s.probability ?: 0.0,
-                                commonNames = s.plantDetails?.commonNames ?: emptyList(),
-                                imageUrl = s.similarImages?.firstOrNull()?.url ?: ""
-                            )
-                        } ?: emptyList()
-
-                        Log.d("CameraFragment", "Found ${suggestions.size} suggestions for sample plant")
-
-                        if (suggestions.isNotEmpty()) {
-                            // Save to database with a placeholder URI
-                            val samplePlantEntity = PlantEntity(
-                                imageUri = "resource://sample_plant",
-                                name = suggestions.first().name,
-                                probability = suggestions.first().probability,
-                                commonNames = suggestions.first().commonNames.joinToString(", "),
-                                synced = true,
-                                status = "IDENTIFIED"
-                            )
-                            plantRepository.savePlant(samplePlantEntity)
-
-                            // Show suggestions
-                            val bundle = Bundle().apply {
-                                putParcelableArrayList("suggestions", ArrayList(suggestions))
-                            }
-                            val fragment = SuggestionsFragment().apply {
-                                arguments = bundle
-                            }
-
-                            parentFragmentManager.beginTransaction()
-                                .replace(R.id.fragment_container, fragment)
-                                .addToBackStack(null)
-                                .commit()
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "No suggestions found with sample image. The API might not recognize this plant.",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-                    is IdentificationResult.Error -> {
-                        Log.e("CameraFragment", "Sample plant test failed: ${result.message}")
-                        Toast.makeText(
-                            requireContext(),
-                            "Test failed: ${result.message}",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("CameraFragment", "Error in testWithSamplePlant: ${e.message}", e)
-                Toast.makeText(
-                    requireContext(),
-                    "Test error: ${e.localizedMessage}",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
-    }
+//    private fun testWithSamplePlant() {
+//        Toast.makeText(requireContext(), "Testing with sample plant...", Toast.LENGTH_SHORT).show()
+//
+//        lifecycleScope.launch {
+//            try {
+//                Log.d("CameraFragment", "Loading sample plant image from resources...")
+//
+//                // Load sample image from raw resources
+//                val inputStream = requireContext().resources.openRawResource(R.raw.sample_plant)
+//                val bytes = inputStream.readBytes()
+//                inputStream.close()
+//
+//                Log.d("CameraFragment", "Sample image size: ${bytes.size} bytes")
+//
+//                // Convert to PURE Base64 (no data URL prefix)
+//                val base64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
+//                Log.d("CameraFragment", "Pure base64 length: ${base64.length}")
+//
+//                // Identify the plant
+//                when (val result = plantRepository.identifyPlantFromBitmapBase64V3(base64)) {
+//                    is IdentificationResult.Success -> {
+//                        val response = result.response
+//                        Log.d("CameraFragment", "Sample plant identification successful!")
+//
+//                        // Map suggestions
+//                        val suggestions = response?.result?.classification?.suggestions?.map { s ->
+//                            SuggestionUiModel(
+//                                name = s.name ?: "Unknown Plant",
+//                                probability = s.probability ?: 0.0,
+//                                commonNames = s.plantDetails?.commonNames ?: emptyList(),
+//                                imageUrl = s.similarImages?.firstOrNull()?.url ?: ""
+//                            )
+//                        } ?: emptyList()
+//
+//                        Log.d("CameraFragment", "Found ${suggestions.size} suggestions for sample plant")
+//
+//                        if (suggestions.isNotEmpty()) {
+//                            // Save to database with a placeholder URI
+//                            val samplePlantEntity = PlantEntity(
+//                                imageUri = "resource://sample_plant",
+//                                name = suggestions.first().name,
+//                                probability = suggestions.first().probability,
+//                                commonNames = suggestions.first().commonNames.joinToString(", "),
+//                                synced = true,
+//                                status = "IDENTIFIED"
+//                            )
+//                            plantRepository.savePlant(samplePlantEntity)
+//
+//                            // Show suggestions
+//                            val bundle = Bundle().apply {
+//                                putParcelableArrayList("suggestions", ArrayList(suggestions))
+//                            }
+//                            val fragment = SuggestionsFragment().apply {
+//                                arguments = bundle
+//                            }
+//
+//                            parentFragmentManager.beginTransaction()
+//                                .replace(R.id.fragment_container, fragment)
+//                                .addToBackStack(null)
+//                                .commit()
+//                        } else {
+//                            Toast.makeText(
+//                                requireContext(),
+//                                "No suggestions found with sample image. The API might not recognize this plant.",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }
+//                    }
+//                    is IdentificationResult.Error -> {
+//                        Log.e("CameraFragment", "Sample plant test failed: ${result.message}")
+//                        Toast.makeText(
+//                            requireContext(),
+//                            "Test failed: ${result.message}",
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                    }
+//                }
+//            } catch (e: Exception) {
+//                Log.e("CameraFragment", "Error in testWithSamplePlant: ${e.message}", e)
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Test error: ${e.localizedMessage}",
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            }
+//        }
+//    }
 
     private fun handlePhotoSaved(savedUri: Uri) {
         Toast.makeText(requireContext(), "Photo saved!", Toast.LENGTH_SHORT).show()

@@ -93,6 +93,10 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:1.8.2") //for viewModels
 
+    //for my garden page
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    kapt ("com.github.bumptech.glide:compiler:4.16.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
