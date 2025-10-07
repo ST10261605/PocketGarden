@@ -1,0 +1,8 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circle background -->
+    <item android:drawable="@drawable/camera_background"/>
+
+    <!-- Camera icon centered on top -->
+    <item android:drawable="@drawable/ic_camera"
+        android:gravity="center"/>
+</layer-list>

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--<item
+    <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
         android:title="Home" />
 
     <item
-        android:id="@+id/nav_plants"
+        android:id="@+id/nav_diagnose"
         android:icon="@drawable/ic_diagnose"
         android:title="Diagnose" />
+
+    <item
+        android:id="@+id/nav_camera"
+        android:icon="@drawable/ic_camera_with_circle"
+        android:title="" />
 
     <item
         android:id="@+id/nav_garden"
@@ -17,8 +22,8 @@
         android:title="My Garden" />
 
     <item
-        android:id="@+id/nav_more"
-        android:icon="@drawable/ic_more"
-        android:title="More" /> -->
-</menu>
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/icons8_global_50"
+        android:title="More" />
 
+</menu>

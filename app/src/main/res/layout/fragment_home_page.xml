@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context=".HomePageFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
 
         <!-- Search View -->
         <SearchView
@@ -29,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="#4F772D"
-            android:src="@drawable/icons8_camera_50"
+            android:src="@drawable/ic_camera"
             app:layout_constraintEnd_toStartOf="@+id/imageButton3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView3" />
@@ -40,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="#4F772D"
-            android:src="@drawable/icons8_plant_50"
+            android:src="@drawable/ic_garden"
             app:layout_constraintEnd_toStartOf="@+id/imageButton4"
             app:layout_constraintStart_toEndOf="@+id/imageButton2"
             app:layout_constraintTop_toBottomOf="@+id/searchView3" />
@@ -51,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="#4F772D"
-            android:src="@drawable/icons8_medical_50"
+            android:src="@drawable/ic_diagnose"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageButton3"
             app:layout_constraintTop_toBottomOf="@+id/searchView3" />
@@ -330,19 +340,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView19" />
 
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
         <!-- Bottom Navigation -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="#2F522D"
+            app:itemIconTint="@color/nav_item_colors"
+            app:itemTextColor="@color/nav_item_colors"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
 
-<!-- References -->
-<!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/c44d6e19-ce45-42cb-9886-1be0be68e96b , Accessed: 2025-09-10, (Button Colour)-->
-<!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-b426-df5c28672738 , Accessed: 2025-09-21  (Fixing Error)-->
+
+    <!-- References -->
+    <!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/c44d6e19-ce45-42cb-9886-1be0be68e96b , Accessed: 2025-09-10, (Button Colour)-->
+    <!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-b426-df5c28672738 , Accessed: 2025-09-21  (Fixing Error)-->

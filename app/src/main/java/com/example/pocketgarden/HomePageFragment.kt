@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import com.example.pocketgarden.databinding.FragmentHomePageBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -29,6 +30,8 @@ class HomePageFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var googleSignInClient: GoogleSignInClient
+    private var _binding: FragmentHomePageBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +46,8 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false)
+        _binding = FragmentHomePageBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     // Inside HomePageFragment.kt
@@ -56,7 +59,38 @@ class HomePageFragment : Fragment() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
-        val googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+
+        GoogleSignIn.getClient(requireActivity(), gso)
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, HomePageFragment())
+                        .commit()
+                    true
+                }
+                R.id.nav_garden -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, MyGardenFragment())
+                        .commit()
+                    true
+                }
+                R.id.nav_camera -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, IdentifyPlantCameraFragment())
+                        .commit()
+                    true
+                }
+                R.id.nav_settings -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, SettingsPageFragment())
+                        .commit()
+                    true
+                }
+                else -> false
+            }
+        }
 
         //Navigation buttons
         val identifyButton = view.findViewById<ImageButton>(R.id.imageButton2)
@@ -90,8 +124,12 @@ class HomePageFragment : Fragment() {
                 .commit();
         }
 
-    }
 
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     companion object {
         /**
