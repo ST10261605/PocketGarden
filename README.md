@@ -41,7 +41,7 @@ Future Features to be Implemented:
 
 # Installation
 •	To run the project locally, we need to clone the repository using the following link:
-ST10261605/PocketGarden 
+https://github.com/ST10261605/PocketGarden
 
 •	Once you have the link, open Android Studio, click “Clone Repository” and enter the repository link.
 
@@ -60,7 +60,7 @@ ST10261605/PocketGarden
 
 
 # GitHub Link
-ST10261605/PocketGarden
+https://github.com/ST10261605/PocketGarden
 
 # Acknowledgements
 •	Fixing Error in Home Screen UI: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-b426-df5c28672738
