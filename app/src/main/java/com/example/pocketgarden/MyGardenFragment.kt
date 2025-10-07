@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pocketgarden.data.local.PlantEntity
+import com.example.pocketgarden.databinding.FragmentHomePageBinding
+import com.example.pocketgarden.databinding.FragmentMyGardenBinding
 import com.example.pocketgarden.repository.PlantRepository
 import com.example.pocketgarden.ui.garden.PlantAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -21,19 +23,54 @@ class MyGardenFragment : Fragment() {
     private lateinit var plantAdapter: PlantAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var emptyState: View
+    private var _binding: FragmentMyGardenBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout using the resource ID
-        return inflater.inflate(R.layout.fragment_my_garden, container, false)
+        _binding = FragmentMyGardenBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, HomePageFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_garden -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, MyGardenFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_camera -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, IdentifyPlantCameraFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_settings -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, SettingsPageFragment())
+                        .commit()
+                    true
+                }
+
+                else -> false
+            }
+        }
         // Initialize views using findViewById
         recyclerView = view.findViewById(R.id.rvPlants)
         emptyState = view.findViewById(R.id.emptyState)
@@ -41,6 +78,7 @@ class MyGardenFragment : Fragment() {
         plantRepository = PlantRepository.getInstance(requireContext())
         setupRecyclerView()
         observePlants()
+
     }
 
     private fun setupRecyclerView() {
@@ -100,5 +138,10 @@ class MyGardenFragment : Fragment() {
     private fun setFertilizerReminder(plant: PlantEntity) {
         // TODO: Implement fertilizer reminder functionality
         Log.d("MyGardenFragment", "Set fertilizer reminder for: ${plant.name}")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
