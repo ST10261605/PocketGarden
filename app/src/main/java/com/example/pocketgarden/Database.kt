@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.pocketgarden.data.local.PlantDAO
 import com.example.pocketgarden.data.local.PlantEntity
 
-@Database(entities = [User::class, PlantEntity::class] , version = 2)
+@Database(entities = [User::class, PlantEntity::class] , version = 4)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDAO
     abstract fun plantDao(): PlantDAO

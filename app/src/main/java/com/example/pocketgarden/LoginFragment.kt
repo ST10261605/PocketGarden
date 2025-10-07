@@ -81,8 +81,11 @@ class LoginFragment : Fragment() {
                 lifecycleScope.launch {
                     val user = userDao.getUserByEmail(email) // fetch user from DB
 
+
                     if (user != null && user.password == password) {
                         // Login successful, navigate to home
+                        SessionManager.saveUserEmail(requireContext(), email)
+
                         parentFragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, HomePageFragment())
                             .commit()
@@ -102,36 +105,36 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setupGoogleLogin(view: View)
-    {
+    private fun setupGoogleLogin(view: View) {
         val googleBtn = view.findViewById<SignInButton>(R.id.GoogleSignInbtn)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
 
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(),gso)
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         googleSignInLauncher = registerForActivityResult(
             androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
-            ){ result ->
-                    val data = result.data
-                    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                    try{
-                        val account = task.getResult(ApiException::class.java)
-                        val email = account.email
-                        val name = account?.displayName
-                        Toast.makeText(requireContext(),"Welcome $name!", Toast.LENGTH_SHORT).show()
-                        navigateToHome()
-                    }catch (e: ApiException)
-                    {
-                        Log.w("LoginFragment", "Google sign in failed",e)
-                        Toast.makeText(requireContext(), "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
-        googleBtn.setOnClickListener{
-            val signInIntent = googleSignInClient.signInIntent
-            googleSignInLauncher.launch(signInIntent)
+        ) { result ->
+            val data = result.data
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                val email = account.email
+                val name = account?.displayName
+                Toast.makeText(requireContext(), "Welcome $name!", Toast.LENGTH_SHORT).show()
+                navigateToHome()
+            } catch (e: ApiException) {
+                Log.w("LoginFragment", "Google sign in failed", e)
+                Toast.makeText(requireContext(), "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+        googleBtn.setOnClickListener {
+            googleSignInClient.revokeAccess().addOnCompleteListener {
+                val signInIntent = googleSignInClient.signInIntent
+                googleSignInLauncher.launch(signInIntent)
+            }
         }
     }
     private fun navigateToHome()

@@ -67,8 +67,9 @@ class SignUpFragment : Fragment() {
                 //insert user into RoomDB
                 lifecycleScope.launch{
                     userDao.insertUser(newUser)
-
+                    SessionManager.saveUserEmail(requireContext(), email)
                     Toast.makeText(requireContext(), "Sign Up was successful!", Toast.LENGTH_SHORT).show()
+
                     // Navigate to login after successful registration
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, LoginFragment())

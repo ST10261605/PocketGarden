@@ -12,21 +12,21 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-
+        <!-- Search View -->
         <SearchView
             android:id="@+id/searchView4"
-            android:layout_width="396dp"
+            android:layout_width="0dp"
             android:layout_height="51dp"
-            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Header -->
         <TextView
             android:id="@+id/textView51"
-            android:layout_width="384dp"
+            android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="16dp"
             android:background="#4F772D"
             android:fontFamily="sans-serif-medium"
             android:text="Settings and More"
@@ -34,154 +34,157 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView4" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchView4" />
 
+        <!-- Water Calculator -->
         <ImageView
             android:id="@+id/imageView22"
             android:layout_width="42dp"
             android:layout_height="43dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="49dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/icons8_watering_can_50"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+            app:layout_constraintTop_toBottomOf="@id/textView51" />
 
+        <Button
+            android:id="@+id/button20"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4F772D"
+            android:text="Water Calculator"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toEndOf="@id/imageView22"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView22" />
+
+        <!-- Set Language -->
         <ImageView
             android:id="@+id/imageView23"
             android:layout_width="43dp"
             android:layout_height="47dp"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/icons8_global_50"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView22" />
-
-        <ImageView
-            android:id="@+id/imageView24"
-            android:layout_width="46dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/icons8_biometric_64"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView23" />
-
-        <ImageView
-            android:id="@+id/imageView25"
-            android:layout_width="51dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/icons8_notifications_64"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView24" />
-
-        <ImageView
-            android:id="@+id/imageView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/icons8_user_48"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView25" />
-
-        <Button
-            android:id="@+id/button20"
-            android:layout_width="260dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="#4F772D"
-            android:text="Water Calculator"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toEndOf="@+id/imageView22"
-            app:layout_constraintTop_toBottomOf="@+id/textView51" />
-
-        <Button
-            android:id="@+id/button21"
-            android:layout_width="263dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="27dp"
-            android:backgroundTint="#4F772D"
-            android:text="Enable Fingerprint Authentication"
-            app:layout_constraintStart_toEndOf="@+id/imageView24"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-        <Button
-            android:id="@+id/button22"
-            android:layout_width="260dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="34dp"
-            android:backgroundTint="#4F772D"
-            android:text="Notifications"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toEndOf="@+id/imageView25"
-            app:layout_constraintTop_toBottomOf="@+id/button21" />
-
-        <Button
-            android:id="@+id/button23"
-            android:layout_width="260dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="#4F772D"
-            android:text="Logout"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toEndOf="@+id/imageView26"
-            app:layout_constraintTop_toBottomOf="@+id/button22" />
-
-        <Button
-            android:id="@+id/button24"
-            android:layout_width="260dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#4F772D"
-            android:text="Update Profile Information"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toEndOf="@+id/imageView27"
-            app:layout_constraintTop_toBottomOf="@+id/button23" />
+            app:layout_constraintTop_toBottomOf="@id/imageView22" />
 
         <TextView
             android:id="@+id/textView52"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="38dp"
-            android:fontFamily="sans-serif-black"
+            android:layout_marginStart="8dp"
             android:text="Set Language"
-            app:layout_constraintStart_toEndOf="@+id/imageView23"
-            app:layout_constraintTop_toBottomOf="@+id/button20" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/imageView23"
+            app:layout_constraintTop_toTopOf="@id/imageView23" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="193dp"
+            android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="29dp"
+            android:layout_marginStart="8dp"
             android:background="#4F772D"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/button20" />
+            app:layout_constraintStart_toEndOf="@id/textView52"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textView52" />
 
+        <!-- Fingerprint Authentication -->
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="46dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/icons8_biometric_64"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView23" />
+
+        <Button
+            android:id="@+id/button21"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4F772D"
+            android:text="Enable Fingerprint Authentication"
+            app:layout_constraintStart_toEndOf="@id/imageView24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView24" />
+
+        <!-- Notifications -->
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="51dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/icons8_notifications_64"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView24" />
+
+        <Button
+            android:id="@+id/button22"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4F772D"
+            android:text="Notifications"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toEndOf="@id/imageView25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView25" />
+
+        <!-- Update Profile Information -->
         <ImageView
             android:id="@+id/imageView27"
             android:layout_width="49dp"
             android:layout_height="49dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/icons8_user_48"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView26" />
+            app:layout_constraintTop_toBottomOf="@id/imageView25" />
 
+        <Button
+            android:id="@+id/button24"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4F772D"
+            android:text="Update Profile Information"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toEndOf="@id/imageView27"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView27" />
+
+        <!-- Logout -->
+        <ImageView
+            android:id="@+id/imageViewLogout"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/icons8_user_48"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView27" />
+
+        <Button
+            android:id="@+id/Logoutbtn"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4F772D"
+            android:text="Logout"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toEndOf="@id/imageViewLogout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageViewLogout" />
+
+        <!-- Bottom Navigation -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="388dp"
+            android:id="@+id/bottomNav"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            tools:layout_editor_absoluteX="-7dp"
-            tools:layout_editor_absoluteY="658dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Logoutbtn"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

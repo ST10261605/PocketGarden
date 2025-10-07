@@ -330,16 +330,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView19" />
 
-        <Button
-            android:id="@+id/signOutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#4F772D"
-            android:text="Sign Out"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView19" />
-
         <!-- Bottom Navigation -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -353,5 +343,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 
-<!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/c44d6e19-ce45-42cb-9886-1be0be68e96b , Accessed: 2025-09-10, (Button Colour)
-    A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-b426-df5c28672738 , Accessed: 2025-09-21  (Fixing Error)->
+<!-- References -->
+<!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/c44d6e19-ce45-42cb-9886-1be0be68e96b , Accessed: 2025-09-10, (Button Colour)-->
+<!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-b426-df5c28672738 , Accessed: 2025-09-21  (Fixing Error)-->

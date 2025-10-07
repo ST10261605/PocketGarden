@@ -57,19 +57,6 @@ class HomePageFragment : Fragment() {
             .requestEmail()
             .build()
         val googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-        val signOutButton = view.findViewById<Button>(R.id.signOutBtn)
-
-        signOutButton.setOnClickListener {
-            // Remove Google account
-            googleSignInClient.revokeAccess().addOnCompleteListener {
-                Toast.makeText(requireContext(), "Account removed. Please select an account next time.", Toast.LENGTH_SHORT).show()
-
-                // Navigate back to LoginFragment
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, LoginFragment())
-                    .commit()
-            }
-        }
 
         //Navigation buttons
         val identifyButton = view.findViewById<ImageButton>(R.id.imageButton2)
