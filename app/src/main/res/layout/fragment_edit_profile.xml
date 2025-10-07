@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -10,168 +12,167 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_marginBottom="56dp"> <!-- Add margin to prevent content from going behind nav bar -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-        <!-- Back button -->
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- Back button -->
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Edit Profile"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:ellipsize="end"
-            android:singleLine="true"
-            app:layout_constraintStart_toEndOf="@id/backButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/backButton"
-            app:layout_constraintBottom_toBottomOf="@id/backButton"
-            android:layout_marginStart="12dp" />
+            <!-- Title -->
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:singleLine="true"
+                app:layout_constraintStart_toEndOf="@id/backButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/backButton"
+                app:layout_constraintBottom_toBottomOf="@id/backButton"
+                android:layout_marginStart="12dp" />
 
-        <!-- Profile picture -->
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toBottomOf="@id/backButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="32dp"
-            android:contentDescription="Profile Image"/>
-            <!--android:background="@drawable/circle_background"-->
+            <!-- Profile picture -->
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toBottomOf="@id/backButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="32dp"
+                android:contentDescription="Profile Image"/>
 
-        <!-- Change photo button -->
-        <ImageButton
-            android:id="@+id/changePhotoButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Change Photo"
-            app:layout_constraintBottom_toBottomOf="@id/profileImage"
-            app:layout_constraintEnd_toEndOf="@id/profileImage"
-            android:layout_margin="4dp" />
+            <!-- Change photo button -->
+            <ImageButton
+                android:id="@+id/changePhotoButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Change Photo"
+                app:layout_constraintBottom_toBottomOf="@id/profileImage"
+                app:layout_constraintEnd_toEndOf="@id/profileImage"
+                android:layout_margin="4dp" />
 
-        <!-- Email section header -->
-        <TextView
-            android:id="@+id/EmailTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update Email"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/profileImage"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp" />
+            <!-- Email section header -->
+            <TextView
+                android:id="@+id/EmailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Email"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/profileImage"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="24dp" />
 
-        <!-- Email address -->
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Email address"
-            android:inputType="textEmailAddress"
-            android:padding="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/EmailTitle"
-            android:layout_marginTop="8dp" />
+            <!-- Email address -->
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Email address"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EmailTitle"
+                android:layout_marginTop="8dp" />
 
-        <!-- Password section header -->
-        <TextView
-            android:id="@+id/passwordSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change Password"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/editTextEmail"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp" />
+            <!-- Password section header -->
+            <TextView
+                android:id="@+id/passwordSectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Password"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="24dp" />
 
-        <!-- Current Password -->
-        <EditText
-            android:id="@+id/currentPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Current password"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/passwordSectionTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp" />
+            <!-- Current Password -->
+            <EditText
+                android:id="@+id/currentPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Current password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                app:layout_constraintTop_toBottomOf="@id/passwordSectionTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp" />
 
-        <!-- New Password -->
-        <EditText
-            android:id="@+id/newPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="New password"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/currentPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp" />
+            <!-- New Password -->
+            <EditText
+                android:id="@+id/newPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="New password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                app:layout_constraintTop_toBottomOf="@id/currentPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12dp" />
 
-        <!-- Confirm New Password -->
-        <EditText
-            android:id="@+id/confirmNewPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Confirm new password"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/newPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp" />
+            <!-- Confirm New Password -->
+            <EditText
+                android:id="@+id/confirmNewPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Confirm new password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                app:layout_constraintTop_toBottomOf="@id/newPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12dp" />
 
-        <!-- Update button -->
-        <Button
-            android:id="@+id/buttonUpdate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Update Profile"
-            android:backgroundTint="@color/green"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/confirmNewPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="32dp" />
+            <!-- Update button -->
+            <Button
+                android:id="@+id/buttonUpdate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Update Profile"
+                android:backgroundTint="@color/green"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/confirmNewPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Navigation Bar - Fixed at bottom using CoordinatorLayout -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#2F522D"
         app:itemIconTint="@color/nav_item_colors"
         app:itemTextColor="@color/nav_item_colors"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"
-        android:elevation="10dp" />
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

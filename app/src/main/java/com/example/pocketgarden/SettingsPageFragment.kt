@@ -7,12 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import com.example.pocketgarden.databinding.FragmentMyGardenBinding
+import com.example.pocketgarden.databinding.FragmentSettingsPageBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private var _binding: FragmentSettingsPageBinding? = null
+private val binding get() = _binding!!
 
 class SettingsPageFragment : Fragment() {
     private var param1: String? = null
@@ -37,7 +41,8 @@ class SettingsPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings_page, container, false)
+        _binding = FragmentSettingsPageBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,6 +66,39 @@ class SettingsPageFragment : Fragment() {
                     .replace(R.id.fragment_container, EditProfileFragment())
                     .addToBackStack(null)
                     .commit()
+            }
+        }
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, HomePageFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_garden -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, MyGardenFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_camera -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, IdentifyPlantCameraFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_settings -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, SettingsPageFragment())
+                        .commit()
+                    true
+                }
+
+                else -> false
             }
         }
 

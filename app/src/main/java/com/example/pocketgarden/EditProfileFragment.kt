@@ -17,6 +17,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import com.example.pocketgarden.databinding.FragmentEditProfileBinding
+import com.example.pocketgarden.databinding.FragmentMyGardenBinding
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,6 +43,10 @@ class EditProfileFragment : Fragment() {
 
     private var tempProfileImageUri: String? = null
 
+    private var _binding: FragmentEditProfileBinding? = null
+    private val binding get() = _binding!!
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +60,8 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
+        _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -123,19 +129,35 @@ class EditProfileFragment : Fragment() {
                     // If user filled in the password section
                     if (currentPassword.isNotEmpty() || newPassword.isNotEmpty() || confirmPassword.isNotEmpty()) {
                         if (currentPassword != user.password) {
-                            Toast.makeText(requireContext(), "Current password incorrect", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Current password incorrect",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             return@launch
                         }
                         if (newPassword != confirmPassword) {
-                            Toast.makeText(requireContext(), "New passwords do not match", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "New passwords do not match",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             return@launch
                         }
                         if (newPassword == currentPassword) {
-                            Toast.makeText(requireContext(), "New password cannot be the same as current", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "New password cannot be the same as current",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             return@launch
                         }
                         if (newPassword.length < 6) {
-                            Toast.makeText(requireContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Password must be at least 6 characters",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             return@launch
                         }
                         passwordToSave = newPassword
@@ -149,7 +171,11 @@ class EditProfileFragment : Fragment() {
                     )
                     userDao.updateUser(updatedUser)
                     SessionManager.saveUserEmail(requireContext(), email)
-                    Toast.makeText(requireContext(), "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Profile updated successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     parentFragmentManager.popBackStack()
 
                 } else {
@@ -157,8 +183,44 @@ class EditProfileFragment : Fragment() {
                 }
             }
         }
-    }
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, HomePageFragment())
+                        .commit()
+                    true
+                }
 
+                R.id.nav_garden -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, MyGardenFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_camera -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, IdentifyPlantCameraFragment())
+                        .commit()
+                    true
+                }
+
+                R.id.nav_settings -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, SettingsPageFragment())
+                        .commit()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/nav_camera"
-        android:icon="@drawable/ic_camera_with_circle"
+        android:icon="@drawable/ic_camera"
         android:title="" />
 
     <item
@@ -23,7 +23,7 @@
 
     <item
         android:id="@+id/nav_settings"
-        android:icon="@drawable/icons8_global_50"
+        android:icon="@drawable/settings"
         android:title="More" />
 
 </menu>
