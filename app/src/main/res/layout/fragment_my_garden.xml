@@ -1,413 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyGardenFragment">
+    android:padding="16dp"
+    android:background="@color/white">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!-- Header -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:text="@string/my_garden"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            android:padding="8dp" />
 
-        <ImageView
-            android:id="@+id/imageView21"
-            android:layout_width="29dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="7dp"
-            android:src="@drawable/icons8_fertilizer_50"
-            app:layout_constraintStart_toEndOf="@+id/button18"
-            app:layout_constraintTop_toBottomOf="@+id/imageView20" />
-
-        <ImageView
-            android:id="@+id/imageView20"
-            android:layout_width="29dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
-            android:src="@drawable/icons8_watering_can_50"
-            app:layout_constraintBottom_toTopOf="@+id/button18"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/button18"
-            android:layout_width="204dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="42dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Fertilizer Reminder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView21" />
-
-        <TextView
-            android:id="@+id/textView49"
-            android:layout_width="wrap_content"
+        <!-- Plants RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPlants"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="69dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Orchid"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/textView50"
-            app:layout_constraintEnd_toStartOf="@+id/button19" />
+            android:layout_marginBottom="16dp" />
 
-        <SearchView
-            android:id="@+id/searchView2"
-            android:layout_width="382dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView42"
-            android:layout_width="380dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="30dp"
-            android:background="#4F772D"
-            android:fontFamily="sans-serif-medium"
-            android:text="My Garden"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView2" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="123dp"
-            android:layout_height="149dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/tulip"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView42" />
-
-        <TextView
-            android:id="@+id/textView43"
-            android:layout_width="wrap_content"
+        <!-- Empty State -->
+        <LinearLayout
+            android:id="@+id/emptyState"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Tulip"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="48dp"
+            android:visibility="gone">
 
-        <TextView
-            android:id="@+id/textView44"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Tulipa"
-            android:textStyle="italic"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView43" />
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_plant_placeholder"
+                android:contentDescription="@string/empty_garden"
+                app:tint="@color/gray" />
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="206dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="6dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Water Reminder"
-            android:textAlignment="center"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView44" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_plants_yet"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
+                android:layout_marginTop="16dp"
+                android:gravity="center" />
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="205dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="3dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Fertilizer Reminder"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/button8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tap_camera_to_add"
+                android:textSize="14sp"
+                android:textColor="@color/gray"
+                android:layout_marginTop="8dp"
+                android:gravity="center" />
 
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="139dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/sunflower"
-            app:layout_constraintEnd_toStartOf="@+id/button11"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="106dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#C01316"
-            android:text="Remove"
-            app:layout_constraintStart_toEndOf="@+id/textView43"
-            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+    </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="29dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="7dp"
-            android:src="@drawable/icons8_fertilizer_50"
-            app:layout_constraintStart_toEndOf="@+id/button9"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
-
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="28dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="31dp"
-            android:src="@drawable/icons8_watering_can_50"
-            app:layout_constraintStart_toEndOf="@+id/button8"
-            app:layout_constraintTop_toBottomOf="@+id/button10" />
-
-        <TextView
-            android:id="@+id/textView45"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="46dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Sunflower"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toStartOf="@+id/button14"
-            app:layout_constraintTop_toBottomOf="@+id/button9" />
-
-        <TextView
-            android:id="@+id/textView46"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="148dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Helianthus annus"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
-        <Button
-            android:id="@+id/button11"
-            android:layout_width="198dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="13dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Water Reminder"
-            app:layout_constraintEnd_toStartOf="@+id/imageView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView46" />
-
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="200dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="10dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Fertilizer Reminder"
-            app:layout_constraintStart_toEndOf="@+id/imageView13"
-            app:layout_constraintTop_toBottomOf="@+id/button11" />
-
-        <Button
-            android:id="@+id/button14"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="#C01316"
-            android:text="Remove"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button9" />
-
-        <ImageView
-            android:id="@+id/imageView14"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/icons8_watering_can_50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button14" />
-
-        <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="29dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/icons8_fertilizer_50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
-
-        <ImageView
-            android:id="@+id/imageView16"
-            android:layout_width="163dp"
-            android:layout_height="173dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="7dp"
-            android:src="@drawable/jasmine"
-            app:layout_constraintEnd_toStartOf="@+id/textView47"
-            app:layout_constraintTop_toBottomOf="@+id/imageView13" />
-
-        <TextView
-            android:id="@+id/textView47"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="49dp"
-            android:layout_marginBottom="4dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Jasmine"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/textView48"
-            app:layout_constraintEnd_toStartOf="@+id/button16" />
-
-        <TextView
-            android:id="@+id/textView48"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="120dp"
-            android:layout_marginBottom="9dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Jasminum officinale"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/button13"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="195dp"
-            android:layout_height="37dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="6dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Water Reminder"
-            app:layout_constraintBottom_toTopOf="@+id/button15"
-            app:layout_constraintEnd_toStartOf="@+id/imageView17" />
-
-        <Button
-            android:id="@+id/button15"
-            android:layout_width="197dp"
-            android:layout_height="37dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="41dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Fertilizer Reminder"
-            app:layout_constraintBottom_toTopOf="@+id/textView49"
-            app:layout_constraintEnd_toStartOf="@+id/imageView18" />
-
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="115dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#C01316"
-            android:text="Remove"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button12" />
-
-        <ImageView
-            android:id="@+id/imageView17"
-            android:layout_width="33dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="29dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/icons8_watering_can_50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button16" />
-
-        <ImageView
-            android:id="@+id/imageView18"
-            android:layout_width="31dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/icons8_fertilizer_50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView17" />
-
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="137dp"
-            android:layout_height="183dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/orchid"
-            app:layout_constraintEnd_toStartOf="@+id/button18"
-            app:layout_constraintTop_toBottomOf="@+id/imageView16" />
-
-        <TextView
-            android:id="@+id/textView50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="59dp"
-            android:layout_marginBottom="11dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Orchideae"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/button17"
-            app:layout_constraintEnd_toStartOf="@+id/button19" />
-
-        <Button
-            android:id="@+id/button17"
-            android:layout_width="202dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="2dp"
-            android:backgroundTint="#4F772D"
-            android:text="Set Water Reminder"
-            app:layout_constraintBottom_toTopOf="@+id/button18"
-            app:layout_constraintEnd_toStartOf="@+id/imageView21" />
-
-        <Button
-            android:id="@+id/button19"
-            android:layout_width="105dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#C01316"
-            android:text="Remove"
-            app:layout_constraintBottom_toTopOf="@+id/imageView20"
-            app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#2F522D"
-        app:itemIconTint="@color/nav_item_colors"
-        app:itemTextColor="@color/nav_item_colors"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-<!-- A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/c44d6e19-ce45-42cb-9886-1be0be68e96b , Accessed: 2025-09-10, (Button Colour) -->
+</ScrollView>
