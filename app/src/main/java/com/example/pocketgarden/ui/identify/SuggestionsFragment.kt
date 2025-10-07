@@ -1,6 +1,7 @@
 package com.example.pocketgarden.ui.identify
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,14 +39,27 @@ class SuggestionsFragment : Fragment() {
         val suggestionsArg: ArrayList<SuggestionUiModel>? =
             arguments?.getParcelableArrayList("suggestions")
 
-        suggestionsArg?.let {
-            viewModel.setSuggestions(it)
-        }
-
         val rv: RecyclerView = root.findViewById(R.id.rvSuggestions)
         val txtSelected: TextView = root.findViewById(R.id.tvSelected)
         val btnConfirm: Button = root.findViewById(R.id.btnConfirm)
+        val txtEmpty: TextView = root.findViewById(R.id.tvEmpty)
 
+        Log.d("SuggestionsFragment", "Received ${suggestionsArg?.size ?: 0} suggestions")
+
+        suggestionsArg?.let {
+            viewModel.setSuggestions(it)
+            if (it.isEmpty()) {
+                txtEmpty.visibility = View.VISIBLE
+                rv.visibility = View.GONE
+            } else {
+                txtEmpty.visibility = View.GONE
+                rv.visibility = View.VISIBLE
+            }
+        } ?: run {
+            txtEmpty.visibility = View.VISIBLE
+            rv.visibility = View.GONE
+            txtEmpty.text = "No suggestions received"
+        }
 
         adapter = SuggestionAdapter(emptyList()) { suggestion ->
             viewModel.selectSuggestion(suggestion)

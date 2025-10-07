@@ -58,6 +58,7 @@ android {
 
 dependencies {
 
+    implementation(libs.firebase.crashlytics.buildtools)
     val camerax_version = "1.3.4"
 
     //CameraX dependencies

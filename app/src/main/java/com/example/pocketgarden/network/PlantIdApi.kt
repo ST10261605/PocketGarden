@@ -4,23 +4,35 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
-import retrofit2.http.Query
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import java.util.concurrent.TimeUnit
 
-//plant.id api interface --> calling the identification endpoint with api key in header and
-//including details of identified plant
 interface PlantIdApi {
-    @POST("identify")
+    @POST("v2/identify")
     suspend fun identify(
         @Header("Api-Key") apiKey: String,
         @Body request: IdentificationRequestV3
     ): Response<IdentificationResponse>
 
     companion object {
-        private const val BASE_URL = "https://api.plant.id/v2/" // base URL
+        private const val BASE_URL = "https://api.plant.id/"
 
         fun create(): PlantIdApi {
+            // Add logging interceptor to see full request/response
+            val logging = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .build()
+
             val retrofit = retrofit2.Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .client(client)
                 .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
                 .build()
 

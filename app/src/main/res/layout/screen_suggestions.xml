@@ -33,33 +33,48 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Confirm bar -->
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="400dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="328dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="No plant suggestions found. Please try again with a clearer photo."
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <LinearLayout
         android:id="@+id/layoutConfirm"
         android:layout_width="0dp"
         android:layout_height="72dp"
+        android:background="?attr/colorSurface"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="12dp"
-        android:gravity="center_vertical"
-        android:background="?attr/colorSurface"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/rvSuggestions">
 
         <TextView
             android:id="@+id/tvSelected"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="No selection"
-            android:textSize="16sp"
+            android:layout_weight="1"
+            android:ellipsize="end"
             android:maxLines="1"
-            android:ellipsize="end" />
+            android:text="No selection"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btnConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:text="Confirm" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
