@@ -11,34 +11,43 @@
         android:id="@+id/textView20"
         android:layout_width="386dp"
         android:layout_height="39dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="46dp"
         android:background="#31572C"
         android:fontFamily="sans-serif-medium"
         android:text="Diagnose Plant"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="46dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
         android:layout_width="377dp"
         android:layout_height="503dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="95dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <Button
         android:layout_width="68dp"
         android:layout_height="74dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="29dp"
         android:backgroundTint="#31572C"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="627dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/previewView" />
 
     <ImageButton
+        android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="34dp"
         android:src="@drawable/icons8_picture_50"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="632dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previewView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
