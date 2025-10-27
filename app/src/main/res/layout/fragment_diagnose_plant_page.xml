@@ -14,74 +14,88 @@
 
 
         <SearchView
+            android:id="@+id/searchView6"
             android:layout_width="348dp"
             android:layout_height="34dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="-3dp" />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="382dp"
             android:layout_height="37dp"
+            android:layout_marginTop="20dp"
             android:background="#4F772D"
             android:fontFamily="sans-serif-medium"
             android:text="Plant Diagonis"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
-            tools:layout_editor_absoluteX="-2dp"
-            tools:layout_editor_absoluteY="59dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView6" />
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="234dp"
             android:layout_height="234dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="27dp"
             android:src="@drawable/tulip"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="123dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/textView42"
             android:layout_width="64dp"
             android:layout_height="29dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
             android:fontFamily="sans-serif-black"
             android:text="Tulip"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="392dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
         <TextView
             android:id="@+id/textView43"
             android:layout_width="128dp"
             android:layout_height="23dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="6dp"
             android:fontFamily="sans-serif-medium"
             android:text="Latin Name: Tulipa"
             android:textAlignment="center"
             android:textColor="#5D5E5D"
             android:textStyle="italic"
-            tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="427dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
         <TextView
             android:id="@+id/textView44"
             android:layout_width="107dp"
             android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="36dp"
             android:text="Plant Health:"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#4F772D"
-            tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="486dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
         <TextView
             android:id="@+id/textView45"
             android:layout_width="166dp"
             android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Plant looks healthy"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="524dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
