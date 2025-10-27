@@ -15,126 +15,151 @@ tools:context=".DiagnosePlantPageFragment">
 
 
         <SearchView
+            android:id="@+id/searchView2"
             android:layout_width="351dp"
             android:layout_height="54dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="-2dp" />
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView55"
             android:layout_width="382dp"
             android:layout_height="37dp"
+            android:layout_marginTop="14dp"
             android:background="#4F772D"
             android:fontFamily="sans-serif-medium"
             android:text="Water Calculator"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="68dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView2" />
 
         <TextView
             android:id="@+id/textView56"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="43dp"
             android:text="Where is the Plant placed?"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="148dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
         <Spinner
             android:id="@+id/spinner6"
             android:layout_width="247dp"
             android:layout_height="26dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#4F772D"
-            tools:layout_editor_absoluteX="65dp"
-            tools:layout_editor_absoluteY="188dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
         <TextView
             android:id="@+id/textView57"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="41dp"
             android:text="How much Sunlight does it get Daily?"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="43dp"
-            tools:layout_editor_absoluteY="255dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner6" />
 
         <Spinner
             android:id="@+id/spinner7"
             android:layout_width="247dp"
             android:layout_height="26dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="26dp"
             android:backgroundTint="#4F772D"
-            tools:layout_editor_absoluteX="65dp"
-            tools:layout_editor_absoluteY="305dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
         <TextView
             android:id="@+id/textView58"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="48dp"
             android:text="What Size is your Plant? (Diameter - Top)"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="379dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner7" />
 
         <EditText
             android:id="@+id/editTextNumberDecimal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="3dp"
             android:ems="10"
             android:inputType="numberDecimal"
-            tools:layout_editor_absoluteX="67dp"
-            tools:layout_editor_absoluteY="406dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
         <TextView
             android:id="@+id/textView59"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="28dp"
             android:text="cm"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="287dp"
-            tools:layout_editor_absoluteY="431dp" />
+            app:layout_constraintStart_toEndOf="@+id/editTextNumberDecimal"
+            app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
         <TextView
             android:id="@+id/textView60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
             android:text="What Size is your Plant (Diameter - Height)"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="17dp"
-            tools:layout_editor_absoluteY="485dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
         <EditText
             android:id="@+id/editTextNumberDecimal2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="9dp"
             android:ems="10"
             android:inputType="numberDecimal"
-            tools:layout_editor_absoluteX="66dp"
-            tools:layout_editor_absoluteY="518dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
         <TextView
             android:id="@+id/textView61"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="25dp"
             android:text="cm"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="287dp"
-            tools:layout_editor_absoluteY="534dp" />
+            app:layout_constraintStart_toEndOf="@+id/editTextNumberDecimal2"
+            app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="223dp"
             android:layout_height="46dp"
-            android:text="Calculate"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="44dp"
             android:backgroundTint="#4F772D"
-            tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="610dp" />
+            android:text="Calculate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
