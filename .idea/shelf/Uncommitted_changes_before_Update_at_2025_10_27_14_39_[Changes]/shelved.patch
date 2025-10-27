@@ -1,0 +1,749 @@
+Index: app/src/main/res/layout/fragment_water_calculator.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_water_calculator.xml b/app/src/main/res/layout/fragment_water_calculator.xml
+new file mode 100644
+--- /dev/null	(date 1760627380839)
++++ b/app/src/main/res/layout/fragment_water_calculator.xml	(date 1760627380839)
+@@ -0,0 +1,141 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++xmlns:app="http://schemas.android.com/apk/res-auto"
++xmlns:tools="http://schemas.android.com/tools"
++android:layout_width="match_parent"
++android:layout_height="match_parent"
++android:fillViewport="true"
++tools:context=".DiagnosePlantPageFragment">
++
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:padding="16dp">
++
++
++        <SearchView
++            android:layout_width="351dp"
++            android:layout_height="54dp"
++            tools:layout_editor_absoluteX="16dp"
++            tools:layout_editor_absoluteY="-2dp" />
++
++        <TextView
++            android:id="@+id/textView55"
++            android:layout_width="382dp"
++            android:layout_height="37dp"
++            android:background="#4F772D"
++            android:fontFamily="sans-serif-medium"
++            android:text="Water Calculator"
++            android:textAlignment="center"
++            android:textAppearance="@style/TextAppearance.AppCompat.Large"
++            android:textColor="#FFFFFF"
++            tools:layout_editor_absoluteX="1dp"
++            tools:layout_editor_absoluteY="68dp" />
++
++        <TextView
++            android:id="@+id/textView56"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Where is the Plant placed?"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="85dp"
++            tools:layout_editor_absoluteY="148dp" />
++
++        <Spinner
++            android:id="@+id/spinner6"
++            android:layout_width="247dp"
++            android:layout_height="26dp"
++            android:backgroundTint="#4F772D"
++            tools:layout_editor_absoluteX="65dp"
++            tools:layout_editor_absoluteY="188dp" />
++
++        <TextView
++            android:id="@+id/textView57"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="How much Sunlight does it get Daily?"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="43dp"
++            tools:layout_editor_absoluteY="255dp" />
++
++        <Spinner
++            android:id="@+id/spinner7"
++            android:layout_width="247dp"
++            android:layout_height="26dp"
++            android:backgroundTint="#4F772D"
++            tools:layout_editor_absoluteX="65dp"
++            tools:layout_editor_absoluteY="305dp" />
++
++        <TextView
++            android:id="@+id/textView58"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="What Size is your Plant? (Diameter - Top)"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="27dp"
++            tools:layout_editor_absoluteY="379dp" />
++
++        <EditText
++            android:id="@+id/editTextNumberDecimal"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:ems="10"
++            android:inputType="numberDecimal"
++            tools:layout_editor_absoluteX="67dp"
++            tools:layout_editor_absoluteY="406dp" />
++
++        <TextView
++            android:id="@+id/textView59"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="cm"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="287dp"
++            tools:layout_editor_absoluteY="431dp" />
++
++        <TextView
++            android:id="@+id/textView60"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="What Size is your Plant (Diameter - Height)"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="17dp"
++            tools:layout_editor_absoluteY="485dp" />
++
++        <EditText
++            android:id="@+id/editTextNumberDecimal2"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:ems="10"
++            android:inputType="numberDecimal"
++            tools:layout_editor_absoluteX="66dp"
++            tools:layout_editor_absoluteY="518dp" />
++
++        <TextView
++            android:id="@+id/textView61"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="cm"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="287dp"
++            tools:layout_editor_absoluteY="534dp" />
++
++        <Button
++            android:id="@+id/button3"
++            android:layout_width="223dp"
++            android:layout_height="46dp"
++            android:text="Calculate"
++            android:backgroundTint="#4F772D"
++            tools:layout_editor_absoluteX="80dp"
++            tools:layout_editor_absoluteY="610dp" />
++
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/java/com/example/pocketgarden/DiagnoseCameraPageFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pocketgarden/DiagnoseCameraPageFragment.kt b/app/src/main/java/com/example/pocketgarden/DiagnoseCameraPageFragment.kt
+new file mode 100644
+--- /dev/null	(date 1760124349239)
++++ b/app/src/main/java/com/example/pocketgarden/DiagnoseCameraPageFragment.kt	(date 1760124349239)
+@@ -0,0 +1,59 @@
++package com.example.pocketgarden
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++
++// TODO: Rename parameter arguments, choose names that match
++// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++private const val ARG_PARAM1 = "param1"
++private const val ARG_PARAM2 = "param2"
++
++/**
++ * A simple [Fragment] subclass.
++ * Use the [DiagnoseCameraPageFragment.newInstance] factory method to
++ * create an instance of this fragment.
++ */
++class DiagnoseCameraPageFragment : Fragment() {
++    // TODO: Rename and change types of parameters
++    private var param1: String? = null
++    private var param2: String? = null
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        arguments?.let {
++            param1 = it.getString(ARG_PARAM1)
++            param2 = it.getString(ARG_PARAM2)
++        }
++    }
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.fragment_diagnose_camera_page, container, false)
++    }
++
++    companion object {
++        /**
++         * Use this factory method to create a new instance of
++         * this fragment using the provided parameters.
++         *
++         * @param param1 Parameter 1.
++         * @param param2 Parameter 2.
++         * @return A new instance of fragment DiagnoseCameraPageFragment.
++         */
++        // TODO: Rename and change types and number of parameters
++        @JvmStatic
++        fun newInstance(param1: String, param2: String) =
++            DiagnoseCameraPageFragment().apply {
++                arguments = Bundle().apply {
++                    putString(ARG_PARAM1, param1)
++                    putString(ARG_PARAM2, param2)
++                }
++            }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/pocketgarden/WaterCalculatorFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pocketgarden/WaterCalculatorFragment.kt b/app/src/main/java/com/example/pocketgarden/WaterCalculatorFragment.kt
+new file mode 100644
+--- /dev/null	(date 1760626159927)
++++ b/app/src/main/java/com/example/pocketgarden/WaterCalculatorFragment.kt	(date 1760626159927)
+@@ -0,0 +1,59 @@
++package com.example.pocketgarden
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++
++// TODO: Rename parameter arguments, choose names that match
++// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++private const val ARG_PARAM1 = "param1"
++private const val ARG_PARAM2 = "param2"
++
++/**
++ * A simple [Fragment] subclass.
++ * Use the [WaterCalculatorFragment.newInstance] factory method to
++ * create an instance of this fragment.
++ */
++class WaterCalculatorFragment : Fragment() {
++    // TODO: Rename and change types of parameters
++    private var param1: String? = null
++    private var param2: String? = null
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        arguments?.let {
++            param1 = it.getString(ARG_PARAM1)
++            param2 = it.getString(ARG_PARAM2)
++        }
++    }
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.fragment_water_calculator, container, false)
++    }
++
++    companion object {
++        /**
++         * Use this factory method to create a new instance of
++         * this fragment using the provided parameters.
++         *
++         * @param param1 Parameter 1.
++         * @param param2 Parameter 2.
++         * @return A new instance of fragment WaterCalculatorFragment.
++         */
++        // TODO: Rename and change types and number of parameters
++        @JvmStatic
++        fun newInstance(param1: String, param2: String) =
++            WaterCalculatorFragment().apply {
++                arguments = Bundle().apply {
++                    putString(ARG_PARAM1, param1)
++                    putString(ARG_PARAM2, param2)
++                }
++            }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_diagnose_plant_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_diagnose_plant_page.xml b/app/src/main/res/layout/fragment_diagnose_plant_page.xml
+new file mode 100644
+--- /dev/null	(date 1760370271752)
++++ b/app/src/main/res/layout/fragment_diagnose_plant_page.xml	(date 1760370271752)
+@@ -0,0 +1,89 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:fillViewport="true"
++    tools:context=".DiagnosePlantPageFragment">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:padding="16dp">
++
++
++        <SearchView
++            android:layout_width="348dp"
++            android:layout_height="34dp"
++            tools:layout_editor_absoluteX="16dp"
++            tools:layout_editor_absoluteY="-3dp" />
++
++        <TextView
++            android:id="@+id/textView2"
++            android:layout_width="382dp"
++            android:layout_height="37dp"
++            android:background="#4F772D"
++            android:fontFamily="sans-serif-medium"
++            android:text="Plant Diagonis"
++            android:textAlignment="center"
++            android:textAppearance="@style/TextAppearance.AppCompat.Large"
++            android:textColor="#FFFFFF"
++            tools:layout_editor_absoluteX="-2dp"
++            tools:layout_editor_absoluteY="59dp" />
++
++        <ImageView
++            android:id="@+id/imageView8"
++            android:layout_width="234dp"
++            android:layout_height="234dp"
++            android:src="@drawable/tulip"
++            tools:layout_editor_absoluteX="64dp"
++            tools:layout_editor_absoluteY="123dp" />
++
++        <TextView
++            android:id="@+id/textView42"
++            android:layout_width="64dp"
++            android:layout_height="29dp"
++            android:fontFamily="sans-serif-black"
++            android:text="Tulip"
++            android:textAlignment="textStart"
++            android:textAppearance="@style/TextAppearance.AppCompat.Large"
++            tools:layout_editor_absoluteX="16dp"
++            tools:layout_editor_absoluteY="392dp" />
++
++        <TextView
++            android:id="@+id/textView43"
++            android:layout_width="128dp"
++            android:layout_height="23dp"
++            android:fontFamily="sans-serif-medium"
++            android:text="Latin Name: Tulipa"
++            android:textAlignment="center"
++            android:textColor="#5D5E5D"
++            android:textStyle="italic"
++            tools:layout_editor_absoluteX="14dp"
++            tools:layout_editor_absoluteY="427dp" />
++
++        <TextView
++            android:id="@+id/textView44"
++            android:layout_width="107dp"
++            android:layout_height="30dp"
++            android:text="Plant Health:"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textColor="#4F772D"
++            tools:layout_editor_absoluteX="14dp"
++            tools:layout_editor_absoluteY="486dp" />
++
++        <TextView
++            android:id="@+id/textView45"
++            android:layout_width="166dp"
++            android:layout_height="24dp"
++            android:fontFamily="sans-serif-condensed-medium"
++            android:text="Plant looks healthy"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            tools:layout_editor_absoluteX="14dp"
++            tools:layout_editor_absoluteY="524dp" />
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
++</ScrollView>
++
+Index: app/src/main/java/com/example/pocketgarden/DiagnosePlantPageFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pocketgarden/DiagnosePlantPageFragment.kt b/app/src/main/java/com/example/pocketgarden/DiagnosePlantPageFragment.kt
+new file mode 100644
+--- /dev/null	(date 1760367773772)
++++ b/app/src/main/java/com/example/pocketgarden/DiagnosePlantPageFragment.kt	(date 1760367773772)
+@@ -0,0 +1,59 @@
++package com.example.pocketgarden
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++
++// TODO: Rename parameter arguments, choose names that match
++// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++private const val ARG_PARAM1 = "param1"
++private const val ARG_PARAM2 = "param2"
++
++/**
++ * A simple [Fragment] subclass.
++ * Use the [DiagnosePlantPageFragment.newInstance] factory method to
++ * create an instance of this fragment.
++ */
++class DiagnosePlantPageFragment : Fragment() {
++    // TODO: Rename and change types of parameters
++    private var param1: String? = null
++    private var param2: String? = null
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        arguments?.let {
++            param1 = it.getString(ARG_PARAM1)
++            param2 = it.getString(ARG_PARAM2)
++        }
++    }
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.fragment_diagnose_plant_page, container, false)
++    }
++
++    companion object {
++        /**
++         * Use this factory method to create a new instance of
++         * this fragment using the provided parameters.
++         *
++         * @param param1 Parameter 1.
++         * @param param2 Parameter 2.
++         * @return A new instance of fragment DiagnosePlantPageFragment.
++         */
++        // TODO: Rename and change types and number of parameters
++        @JvmStatic
++        fun newInstance(param1: String, param2: String) =
++            DiagnosePlantPageFragment().apply {
++                arguments = Bundle().apply {
++                    putString(ARG_PARAM1, param1)
++                    putString(ARG_PARAM2, param2)
++                }
++            }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_water_and_fertilizer_reminder_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_water_and_fertilizer_reminder_page.xml b/app/src/main/res/layout/fragment_water_and_fertilizer_reminder_page.xml
+new file mode 100644
+--- /dev/null	(date 1760626009942)
++++ b/app/src/main/res/layout/fragment_water_and_fertilizer_reminder_page.xml	(date 1760626009942)
+@@ -0,0 +1,149 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:fillViewport="true"
++    tools:context=".WaterAndFertilizerReminderPageFragment">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:padding="16dp">
++
++
++        <SearchView
++            android:layout_width="340dp"
++            android:layout_height="39dp"
++            tools:layout_editor_absoluteX="16dp"
++            tools:layout_editor_absoluteY="3dp" />
++
++        <TextView
++            android:id="@+id/textView46"
++            android:layout_width="382dp"
++            android:layout_height="37dp"
++            android:background="#4F772D"
++            android:fontFamily="sans-serif-medium"
++            android:text="Water and Fertilizer Reminder"
++            android:textAlignment="center"
++            android:textAppearance="@style/TextAppearance.AppCompat.Large"
++            android:textColor="#FFFFFF"
++            tools:layout_editor_absoluteX="-2dp"
++            tools:layout_editor_absoluteY="58dp" />
++
++        <TextView
++            android:id="@+id/textView47"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Set Water Reminder for: Tulip"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textColor="#31572C"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="72dp"
++            tools:layout_editor_absoluteY="119dp" />
++
++        <TextView
++            android:id="@+id/textView48"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Notification Time"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="138dp"
++            tools:layout_editor_absoluteY="159dp" />
++
++        <TextView
++            android:id="@+id/textView49"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Repeat"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="145dp"
++            tools:layout_editor_absoluteY="230dp" />
++
++        <Spinner
++            android:id="@+id/spinner2"
++            android:layout_width="106dp"
++            android:layout_height="27dp"
++            android:backgroundTint="#4F772D"
++            tools:layout_editor_absoluteX="141dp"
++            tools:layout_editor_absoluteY="187dp" />
++
++        <Spinner
++            android:id="@+id/spinner3"
++            android:layout_width="106dp"
++            android:layout_height="27dp"
++            android:backgroundTint="#4F772D"
++            tools:layout_editor_absoluteX="143dp"
++            tools:layout_editor_absoluteY="258dp" />
++
++        <Button
++            android:id="@+id/button"
++            android:layout_width="216dp"
++            android:layout_height="45dp"
++            android:backgroundTint="#31572C"
++            android:text="Confirm"
++            tools:layout_editor_absoluteX="88dp"
++            tools:layout_editor_absoluteY="301dp" />
++
++        <TextView
++            android:id="@+id/textView50"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Set Fertilizer Reminder for: Tulip"
++            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
++            android:textColor="#31572C"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="64dp"
++            tools:layout_editor_absoluteY="397dp" />
++
++        <TextView
++            android:id="@+id/textView53"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Notification Time"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="138dp"
++            tools:layout_editor_absoluteY="445dp" />
++
++        <TextView
++            android:id="@+id/textView54"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Repeat"
++            android:textStyle="bold"
++            tools:layout_editor_absoluteX="147dp"
++            tools:layout_editor_absoluteY="516dp" />
++
++        <Spinner
++            android:id="@+id/spinner4"
++            android:layout_width="106dp"
++            android:layout_height="27dp"
++            android:backgroundTint="#4F772D"
++            tools:layout_editor_absoluteX="143dp"
++            tools:layout_editor_absoluteY="473dp" />
++
++        <Spinner
++            android:id="@+id/spinner5"
++            android:layout_width="106dp"
++            android:layout_height="27dp"
++            android:backgroundTint="#4F772D"
++            tools:layout_editor_absoluteX="142dp"
++            tools:layout_editor_absoluteY="543dp" />
++
++        <Button
++            android:id="@+id/button2"
++            android:layout_width="216dp"
++            android:layout_height="45dp"
++            android:backgroundTint="#31572C"
++            android:text="Confirm"
++            tools:layout_editor_absoluteX="88dp"
++            tools:layout_editor_absoluteY="586dp" />
++
++        <com.google.android.material.bottomnavigation.BottomNavigationView
++            android:layout_width="402dp"
++            android:layout_height="61dp"
++            tools:layout_editor_absoluteX="-18dp"
++            tools:layout_editor_absoluteY="670dp" />
++    </androidx.constraintlayout.widget.ConstraintLayout>
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_diagnose_camera_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_diagnose_camera_page.xml b/app/src/main/res/layout/fragment_diagnose_camera_page.xml
+new file mode 100644
+--- /dev/null	(date 1760272275038)
++++ b/app/src/main/res/layout/fragment_diagnose_camera_page.xml	(date 1760272275038)
+@@ -0,0 +1,44 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/main"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity">
++
++    <TextView
++        android:id="@+id/textView20"
++        android:layout_width="386dp"
++        android:layout_height="39dp"
++        android:background="#31572C"
++        android:fontFamily="sans-serif-medium"
++        android:text="Diagnose Plant"
++        android:textAlignment="center"
++        android:textAppearance="@style/TextAppearance.AppCompat.Large"
++        android:textColor="#FFFFFF"
++        tools:layout_editor_absoluteX="12dp"
++        tools:layout_editor_absoluteY="46dp" />
++
++    <androidx.camera.view.PreviewView
++        android:id="@+id/previewView"
++        android:layout_width="377dp"
++        android:layout_height="503dp"
++        tools:layout_editor_absoluteX="16dp"
++        tools:layout_editor_absoluteY="95dp" />
++
++    <Button
++        android:layout_width="68dp"
++        android:layout_height="74dp"
++        android:backgroundTint="#31572C"
++        tools:layout_editor_absoluteX="171dp"
++        tools:layout_editor_absoluteY="627dp" />
++
++    <ImageButton
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:src="@drawable/icons8_picture_50"
++        tools:layout_editor_absoluteX="29dp"
++        tools:layout_editor_absoluteY="632dp" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+Index: app/src/main/java/com/example/pocketgarden/WaterAndFertilizerReminderPageFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pocketgarden/WaterAndFertilizerReminderPageFragment.kt b/app/src/main/java/com/example/pocketgarden/WaterAndFertilizerReminderPageFragment.kt
+new file mode 100644
+--- /dev/null	(date 1760624427258)
++++ b/app/src/main/java/com/example/pocketgarden/WaterAndFertilizerReminderPageFragment.kt	(date 1760624427258)
+@@ -0,0 +1,63 @@
++package com.example.pocketgarden
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++
++// TODO: Rename parameter arguments, choose names that match
++// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++private const val ARG_PARAM1 = "param1"
++private const val ARG_PARAM2 = "param2"
++
++/**
++ * A simple [Fragment] subclass.
++ * Use the [WaterAndFertilizerReminderPageFragment.newInstance] factory method to
++ * create an instance of this fragment.
++ */
++class WaterAndFertilizerReminderPageFragment : Fragment() {
++    // TODO: Rename and change types of parameters
++    private var param1: String? = null
++    private var param2: String? = null
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        arguments?.let {
++            param1 = it.getString(ARG_PARAM1)
++            param2 = it.getString(ARG_PARAM2)
++        }
++    }
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        // Inflate the layout for this fragment
++        return inflater.inflate(
++            R.layout.fragment_water_and_fertilizer_reminder_page,
++            container,
++            false
++        )
++    }
++
++    companion object {
++        /**
++         * Use this factory method to create a new instance of
++         * this fragment using the provided parameters.
++         *
++         * @param param1 Parameter 1.
++         * @param param2 Parameter 2.
++         * @return A new instance of fragment WaterAndFertilizerReminderPageFragment.
++         */
++        // TODO: Rename and change types and number of parameters
++        @JvmStatic
++        fun newInstance(param1: String, param2: String) =
++            WaterAndFertilizerReminderPageFragment().apply {
++                arguments = Bundle().apply {
++                    putString(ARG_PARAM1, param1)
++                    putString(ARG_PARAM2, param2)
++                }
++            }
++    }
++}
+\ No newline at end of file
