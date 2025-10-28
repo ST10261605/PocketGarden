@@ -9,5 +9,5 @@ data class User (
     val email: String,
     val password: String,
     val profileImageUri: String? = null,
-    val fingerprintEnabled: Boolean = false
+    val fingerprintEnabled: Boolean
 )

@@ -12,6 +12,11 @@
     <!--internet permissions-->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Biometric permissions-->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

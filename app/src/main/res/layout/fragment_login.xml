@@ -70,8 +70,8 @@
         android:id="@+id/Loginbtn"
         android:layout_width="232dp"
         android:layout_height="46dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="#4F772D"
         android:text="Login"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +85,19 @@
         app:layout_constraintTop_toBottomOf="@+id/Loginbtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/fingerprintLoginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login with Fingerprint"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#4F772D"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@+id/GoogleSignInbtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

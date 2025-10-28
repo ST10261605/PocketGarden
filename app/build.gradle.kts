@@ -68,6 +68,9 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:${camerax_version}")
     implementation("androidx.camera:camera-view:${camerax_version}")
 
+    //Biometric dependencies
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+
     //Google Sign in dependencies
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
