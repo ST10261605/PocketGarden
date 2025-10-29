@@ -1,17 +1,24 @@
 package com.example.pocketgarden
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Switch
 import android.widget.Toast
 import com.example.pocketgarden.databinding.FragmentMyGardenBinding
 import com.example.pocketgarden.databinding.FragmentSettingsPageBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+import com.google.android.material.materialswitch.MaterialSwitch
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -47,6 +54,50 @@ class SettingsPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //biometrics
+        val switchFingerprint = view.findViewById< MaterialSwitch>(R.id.switchFingerprint)
+        val prefs = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
+        val isEnabled = prefs.getBoolean("biometric_enabled", false)
+        switchFingerprint.isChecked = isEnabled
+
+        switchFingerprint.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val biometricManager = BiometricManager.from(requireContext())
+                if (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.BIOMETRIC_WEAK)
+                    == BiometricManager.BIOMETRIC_SUCCESS) {
+
+                    val executor = ContextCompat.getMainExecutor(requireContext())
+                    val prompt = BiometricPrompt(this, executor,
+                        object : BiometricPrompt.AuthenticationCallback() {
+                            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                                super.onAuthenticationSucceeded(result)
+                                prefs.edit().putBoolean("biometric_enabled", true).apply()
+                                Toast.makeText(requireContext(), "Fingerprint enabled", Toast.LENGTH_SHORT).show()
+                            }
+
+                            override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                                super.onAuthenticationError(errorCode, errString)
+                                switchFingerprint.isChecked = false
+                                Toast.makeText(requireContext(), "Error: $errString", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+
+                    val info = BiometricPrompt.PromptInfo.Builder()
+                        .setTitle("Enable Fingerprint Login")
+                        .setDescription("Authenticate to enable fingerprint login")
+                        .setNegativeButtonText("Cancel")
+                        .build()
+                    prompt.authenticate(info)
+                } else {
+                    Toast.makeText(requireContext(), "No biometric features available", Toast.LENGTH_LONG).show()
+                    switchFingerprint.isChecked = false
+                }
+            } else {
+                prefs.edit().putBoolean("biometric_enabled", false).apply()
+                Toast.makeText(requireContext(), "Fingerprint disabled", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // Update Profile button navigation
         val updateProfileBtn = view.findViewById<Button>(R.id.button24)
