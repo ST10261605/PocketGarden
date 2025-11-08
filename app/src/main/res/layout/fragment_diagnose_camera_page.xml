@@ -51,3 +51,4 @@
         app:layout_constraintTop_toBottomOf="@+id/previewView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
