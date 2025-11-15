@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
 import com.example.pocketgarden.databinding.FragmentMyGardenBinding
@@ -48,6 +51,10 @@ class SettingsPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val lang = LocaleHelper.loadLocale(requireContext())
+        LocaleHelper.setLocale(requireContext(), lang!!)
+
         _binding = FragmentSettingsPageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -60,6 +67,37 @@ class SettingsPageFragment : Fragment() {
         val prefs = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
         val isEnabled = prefs.getBoolean("biometric_enabled", false)
         switchFingerprint.isChecked = isEnabled
+        val spinner = view.findViewById<Spinner>(R.id.spinner)
+
+        val languages = resources.getStringArray(R.array.languages)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
+        spinner.adapter = adapter
+
+        // Pre-select saved language
+        val savedLang = LocaleHelper.loadLocale(requireContext())
+        val langCodes = resources.getStringArray(R.array.language_codes)
+        val index = langCodes.indexOf(savedLang)
+        if (index >= 0) spinner.setSelection(index)
+
+        // Spinner change listener
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCode = langCodes[position]
+                val activity = requireActivity()
+                LocaleHelper.setLocale(activity, selectedCode)
+
+                // Recreate activity to apply new locale
+                activity.recreate()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        }
+
 
         switchFingerprint.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

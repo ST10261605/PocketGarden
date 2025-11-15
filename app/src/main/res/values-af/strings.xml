@@ -1,0 +1,9 @@
+<resources>
+    <string name="settings_header">Instellings en Meer</string>
+    <string name="water_calculator">Water Berekenaar</string>
+    <string name="set_language">Stel Taal</string>
+    <string name="enable_fingerprint">Aktiveer Vingerafdruk</string>
+    <string name="notifications">Kennisgewings</string>
+    <string name="update_profile">Werk Profiel Inligting By</string>
+    <string name="logout">Teken Uit</string>
+</resources>

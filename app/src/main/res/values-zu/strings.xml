@@ -1,0 +1,9 @@
+<resources>
+    <string name="settings_header">Izilungiselelo nokunye</string>
+    <string name="water_calculator">Isibali Sokunisela</string>
+    <string name="set_language">Setha Ulimi</string>
+    <string name="enable_fingerprint">Vula Ukuqinisekisa Ngezitho</string>
+    <string name="notifications">Izaziso</string>
+    <string name="update_profile">Buyekeza Ulwazi Lwephrofayela</string>
+    <string name="logout">Phuma</string>
+</resources>
