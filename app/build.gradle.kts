@@ -7,6 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-parcelize")
     id("org.jetbrains.kotlin.plugin.parcelize")
+    id("com.google.gms.google-services")
 }
 
 
@@ -58,8 +59,6 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.firebase.crashlytics.buildtools)
     val camerax_version = "1.3.4"
 
     //CameraX dependencies
@@ -105,6 +104,14 @@ dependencies {
 
     //network status monitoring
     implementation("androidx.lifecycle:lifecycle-service:2.7.0")
+
+    // Firebase BOM - This will manage all Firebase library versions
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+
+    // Firebase dependencies (versions managed by BOM)
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

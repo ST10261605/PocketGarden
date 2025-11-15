@@ -23,4 +23,15 @@ interface PlantDAO {
     @Query("SELECT * FROM plants WHERE localId = :id")
     suspend fun getPlantById(id: Long): PlantEntity?
 
+    @Query("SELECT * FROM plants WHERE syncStatus != 'SYNCED' ORDER BY localId ASC")
+    suspend fun getUnsyncedPlants(): List<PlantEntity>
+
+    @Query("SELECT * FROM plants WHERE mongoDBId = :mongoDBId")
+    suspend fun getPlantByMongoDBId(mongoDBId: String): PlantEntity?
+
+    @Query("UPDATE plants SET syncStatus = :syncStatus, lastSyncAttempt = :timestamp WHERE localId = :localId")
+    suspend fun updateSyncStatus(localId: Long, syncStatus: SyncStatus, timestamp: Long)
+
+    @Query("UPDATE plants SET syncStatus = :syncStatus, syncError = :error, lastSyncAttempt = :timestamp WHERE localId = :localId")
+    suspend fun updateSyncStatusWithError(localId: Long, syncStatus: SyncStatus, error: String?, timestamp: Long)
 }
