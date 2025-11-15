@@ -7,7 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-parcelize")
     id("org.jetbrains.kotlin.plugin.parcelize")
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services") version "4.4.0"
 }
 
 
@@ -105,10 +105,8 @@ dependencies {
     //network status monitoring
     implementation("androidx.lifecycle:lifecycle-service:2.7.0")
 
-    // Firebase BOM - This will manage all Firebase library versions
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
-
-    // Firebase dependencies (versions managed by BOM)
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
