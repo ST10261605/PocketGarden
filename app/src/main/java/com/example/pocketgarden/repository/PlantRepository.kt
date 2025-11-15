@@ -1,14 +1,18 @@
 package com.example.pocketgarden.repository
 
 import android.content.Context
+import android.content.SyncResult
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.util.Base64
 import android.util.Log
 import com.example.pocketgarden.AppDatabase
+import com.example.pocketgarden.FirestoreSyncRepository
 import com.example.pocketgarden.data.local.PlantDAO
 import com.example.pocketgarden.data.local.PlantEntity
+import com.example.pocketgarden.data.local.SyncStatus
 import com.example.pocketgarden.network.PlantIdApi
 import com.example.pocketgarden.network.IdentificationRequestV3
 import com.example.pocketgarden.network.IdentificationResponse // Add this import
@@ -20,8 +24,16 @@ import java.io.InputStream
 class PlantRepository(
     private val api: PlantIdApi,
     private val plantDao: PlantDAO,
-    val apiKeyProvider: ApiKeyProvider // interface to get API key or proxy URL
+    val apiKeyProvider: ApiKeyProvider, // interface to get API key or proxy URL
+    private val firestoreSyncRepository: FirestoreSyncRepository,
+    private val connectivityManager: ConnectivityManager
 ) {
+
+    sealed class SyncResult {
+        object NO_NETWORK : SyncResult()
+        data class SUCCESS(val successCount: Int, val failureCount: Int) : SyncResult()
+        data class ERROR(val message: String) : SyncResult()
+    }
 
     //function to add a plant offline, the pending images are only sent for identification once user is back online
     //adding plant to roomdb until user returns online
@@ -30,12 +42,122 @@ class PlantRepository(
         return plantDao.insert(entity)
     }
 
-    suspend fun savePlant(plant: PlantEntity) {
-        plantDao.insert(plant)
+    suspend fun savePlant(plant: PlantEntity): Long {
+        val localId = plantDao.insert(plant)
+
+        // Try to sync to Firestore immediately if online
+        if (isOnline()) {
+            syncPlantToFirestore(localId)
+        }
+
+        return localId
     }
 
     suspend fun deletePlant(plant: PlantEntity) {
-        plantDao.delete(plant)
+        // If plant is synced to Firestore, mark for deletion
+        if (plant.firestoreId != null) {
+            val updatedPlant = plant.copy(
+                syncStatus = SyncStatus.PENDING,
+                updatedAt = System.currentTimeMillis()
+            )
+            plantDao.update(updatedPlant)
+
+            // Try to delete from Firestore immediately if online
+            if (isOnline()) {
+                syncDeletions()
+            }
+        } else {
+            // If never synced, just delete locally
+            plantDao.delete(plant)
+        }
+    }
+
+    suspend fun syncPendingPlants(): SyncResult {
+        return try {
+            if (!isOnline()) {
+                return SyncResult.NO_NETWORK
+            }
+
+            val unsyncedPlants = plantDao.getUnsyncedPlants()
+            var successCount = 0
+            var failureCount = 0
+
+            unsyncedPlants.forEach { plant ->
+                // Update sync status to SYNCING
+                plantDao.updateSyncStatus(plant.localId, SyncStatus.SYNCING, System.currentTimeMillis())
+
+                val syncSuccess = firestoreSyncRepository.syncPlantToFirestore(plant)
+
+                if (syncSuccess) {
+                    // For Firestore, need to handle the document ID
+                    // might need to fetch the actual ID
+                    val updatedPlant = plant.copy(
+                        syncStatus = SyncStatus.SYNCED,
+                        firestoreId = plant.firestoreId ?: "firestore_${plant.localId}",
+                        updatedAt = System.currentTimeMillis()
+                    )
+                    plantDao.update(updatedPlant)
+                    successCount++
+                } else {
+                    plantDao.updateSyncStatusWithError(
+                        plant.localId,
+                        SyncStatus.FAILED,
+                        "Sync failed",
+                        System.currentTimeMillis()
+                    )
+                    failureCount++
+                }
+            }
+
+            // Sync deletions
+            syncDeletions()
+
+            SyncResult.SUCCESS(successCount, failureCount)
+        } catch (e: Exception) {
+            Log.e("PlantRepository", "Error syncing pending plants: ${e.message}")
+            SyncResult.ERROR(e.message ?: "Unknown error")
+        }
+    }
+
+    private suspend fun syncPlantToFirestore(localId: Long) {
+        val plant = plantDao.getPlantById(localId) ?: return
+        plantDao.updateSyncStatus(localId, SyncStatus.SYNCING, System.currentTimeMillis())
+
+        val syncSuccess = firestoreSyncRepository.syncPlantToFirestore(plant)
+
+        if (syncSuccess) {
+            val updatedPlant = plant.copy(
+                syncStatus = SyncStatus.SYNCED,
+                firestoreId = plant.firestoreId ?: "firestore_${plant.localId}",
+                updatedAt = System.currentTimeMillis()
+            )
+            plantDao.update(updatedPlant)
+        } else {
+            plantDao.updateSyncStatusWithError(
+                localId,
+                SyncStatus.FAILED,
+                "Sync failed",
+                System.currentTimeMillis()
+            )
+        }
+    }
+
+    private suspend fun syncDeletions() {
+        // Get plants marked for deletion and sync them
+        val plantsToDelete = plantDao.getPlantsMarkedForDeletion()
+        plantsToDelete.forEach { plant ->
+            plant.firestoreId?.let { firestoreId ->
+                val deleteSuccess = firestoreSyncRepository.deletePlantFromFirestore(firestoreId)
+                if (deleteSuccess) {
+                    plantDao.delete(plant)
+                }
+            }
+        }
+    }
+
+    private fun isOnline(): Boolean {
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
     suspend fun getAllPlantsFlow() = plantDao.getAllPlants()
@@ -48,6 +170,15 @@ class PlantRepository(
                 val db = AppDatabase.getDatabase(context)
                 val dao = db.plantDao()
                 val api = PlantIdApi.create()
+
+                // Get ConnectivityManager
+                val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+                // Create FirestoreSyncRepository
+                val firestoreSyncRepository = FirestoreSyncRepository().apply {
+                    enableOfflinePersistence()
+                }
+
                 val provider = object : ApiKeyProvider {
                     override fun getApiKey(): String = "mRnpO239bpQY3EcOGlxTgQ9GfXl2Krg6Xqqg4WhDkzzXEwSvlX"
 
@@ -82,7 +213,13 @@ class PlantRepository(
                     }
                 }
 
-                PlantRepository(api, dao, provider).also { INSTANCE = it }
+                PlantRepository(
+                    api = api,
+                    plantDao = dao,
+                    apiKeyProvider = provider,
+                    firestoreSyncRepository = firestoreSyncRepository,
+                    connectivityManager = connectivityManager
+                ).also { INSTANCE = it }
             }
         }
     }
@@ -164,47 +301,6 @@ class PlantRepository(
         }
     }
     }
-
-//    // Worker will call this to sync pending items:
-//    suspend fun syncPendingIdentifications(): List<Pair<Long, Boolean>> {
-//        val pending = plantDao.getPendingPlants()
-//        val results = mutableListOf<Pair<Long, Boolean>>()
-//        pending.forEach { plant ->
-//            try {
-//                // load file bytes from URI
-//                val base64 = apiKeyProvider.readUriAsBase64(plant.imageUri)
-//                val req = IdentificationRequestV3(images = listOf(base64))
-//                val resp = api.identify(apiKeyProvider.getApiKey(), req)
-//                if (resp.isSuccessful) {
-//                    val body = resp.body()
-//                    // choose top suggestion (if any)
-//                    val suggestion = body?.result?.classification?.suggestions?.firstOrNull()
-//                    val name = suggestion?.name ?: "Unknown Plant" // Fixed: provide default name
-//                    val updated = plant.copy(
-//                        remoteId = body?.id ?: "", // Fixed: provide default for id
-//                        name = name,
-//                        synced = true,
-//                        status = "IDENTIFIED"
-//                    )
-//                    plantDao.update(updated)
-//                    results.add(plant.localId to true)
-//                } else {
-//                    // if rate limited, throw or mark as failed
-//                    val updated = plant.copy(status = "FAILED")
-//                    plantDao.update(updated)
-//                    results.add(plant.localId to false)
-//                }
-//            } catch (ex: Exception) {
-//                val updated = plant.copy(status = "FAILED")
-//                plantDao.update(updated)
-//                results.add(plant.localId to false)
-//            }
-//        }
-//        return results
-//    }
-//
-//    suspend fun getAllPlantsFlow() = plantDao.getAllPlants()
-//}
 
 sealed class IdentificationResult {
     data class Success(val response: IdentificationResponse?): IdentificationResult() // Fixed: removed package prefix
