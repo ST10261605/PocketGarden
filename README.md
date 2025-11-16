@@ -19,72 +19,72 @@ Currently Implemented Features:
 
 •	Splash Screen:
 
-o	A Welcome Screen once the Application is launched
+A Welcome Screen once the Application is launched
 
 •	User Authentication
 
-o	User Registration and Login Pages using email
+User Registration and Login Pages using email
 
-o	Biometric Authentication (Fingerprint authentication)
+Biometric Authentication (Fingerprint authentication)
 
 
 •	Home Page
 
-o	The main navigation hub of the application
+The main navigation hub of the application
 
-o	Provides needs of plants that are currently saved and kept track of
+Provides needs of plants that are currently saved and kept track of
 
-o	Provides Blogs that are helpful in Plant Care
+Provides Blogs that are helpful in Plant Care
 
 
 •	Plant Identification
 
-o	Uses the device camera to capture a plant for identification
+Uses the device camera to capture a plant for identification
 
-o	Once plant is identified, the plant’s information and care guide is provided
+Once plant is identified, the plant’s information and care guide is provided
 
 
 •	My Garden Page
 
-o	Users can view their saved plants on this page which provides a personal virtual garden
+Users can view their saved plants on this page which provides a personal virtual garden
 
 
 •	Settings Page
 
-o	Allows users to manage their application preferences
+Allows users to manage their application preferences
 
 
 • Backend Integration
 
-o	Connects to REST API allowing for data synchronisation
+Connects to REST API allowing for data synchronisation
 
-o	Offline Mode enabled for specific features
+Offline Mode enabled for specific features
 
 
 • Real-time Notifications
 
-o	Push notifications that alert user for any water or fertiliser reminders
+Push notifications that alert user for any water or fertiliser reminders
 
-o	 Allows users to have customisable notification schedules
+Allows users to have customisable notification schedules
 
 
 • Multi-language Support
 
-o	 Options of switching between English and 2 additional official South African languages
+Options of switching between English and 2 additional official South African languages
 
 
 • Plant Diagnosis 
 
-o	Makes use of camera to capture plant images
+Makes use of camera to capture plant images
 
-o	Displays whether the captured plant is sick or healthy
+Displays whether the captured plant is sick or healthy
 
-o	Provides detailed information about plant health issues
+Provides detailed information about plant health issues
 
 
 • App Icon
 
-o	A custom application icon
+A custom application icon
 
 
 # Installation
