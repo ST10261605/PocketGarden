@@ -7,7 +7,10 @@
     <!-- Fragments -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- My Garden Screen -->
+    <!-- Google Login -->
+    <string name="default_web_client_id">240577956919-94ff3o38oamd301s88evchmrs5e8a0fv.apps.googleusercontent.com</string>
+
+    <!-- My Garden Page -->
     <string name="my_garden">My Garden</string>
     <string name="empty_garden">Your garden is empty</string>
     <string name="no_plants_yet">You have not added any plants yet</string>
@@ -21,16 +24,33 @@
     <string name="remove">Remove</string>
     <string name="no_reminders_set">No reminders set</string>
 
-    <!-- Google Login -->
-    <string name="default_web_client_id">240577956919-94ff3o38oamd301s88evchmrs5e8a0fv.apps.googleusercontent.com</string>
-
     <!-- Settings Page -->
     <string name="settings_header">Settings and More</string>
     <string name="water_calculator">Water Calculator</string>
     <string name="set_language">Set Language</string>
     <string name="enable_fingerprint">Enable Fingerprint Authentication</string>
     <string name="notifications">Notifications</string>
-    <string name="update_profile">Update Profile Information</string>
+    <string name="update_profile_information">Update Profile Information</string>
     <string name="logout">Logout</string>
+
+    <!-- Bottom Nav Bar -->
+    <string name="nav_home">Home</string>
+    <string name="nav_diagnose">Diagnose</string>
+    <string name="nav_camera">Camera</string>
+    <string name="nav_garden">My Garden</string>
+    <string name="nav_more">More</string>
+
+    <!-- Update Profile -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="update_email">Update Email</string>
+    <string name="email_address">Email address</string>
+    <string name="change_password">Change Password</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="back">Back</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="profile_image">Profile Image</string>
 
 </resources>

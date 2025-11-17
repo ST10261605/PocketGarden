@@ -10,21 +10,19 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
-import android.widget.Switch
 import android.widget.Toast
-import com.example.pocketgarden.databinding.FragmentMyGardenBinding
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import com.example.pocketgarden.databinding.FragmentSettingsPageBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
 import com.google.android.material.materialswitch.MaterialSwitch
-
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
 private var _binding: FragmentSettingsPageBinding? = null
 private val binding get() = _binding!!
 
@@ -50,11 +48,7 @@ class SettingsPageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        val lang = LocaleHelper.loadLocale(requireContext())
-        LocaleHelper.setLocale(requireContext(), lang!!)
-
+    ): View {
         _binding = FragmentSettingsPageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -62,18 +56,10 @@ class SettingsPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Language spinner
-        val spinner = view.findViewById<Spinner>(R.id.spinner)
-
-        //Biometrics
         val prefs = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        val isEnabled = prefs.getBoolean("biometric_enabled", false)
-        val switchFingerprint = view.findViewById< MaterialSwitch>(R.id.switchFingerprint)
-        switchFingerprint.isChecked = isEnabled
 
-        var isUserSelecting = false // Prevent infinite loop
-
-        // Load languages from arrays.xml
+// -------------------- LANGUAGE SPINNER --------------------
+        val spinner = binding.spinner
         val languages = resources.getStringArray(R.array.languages)
         val languageCodes = resources.getStringArray(R.array.language_codes)
 
@@ -81,47 +67,39 @@ class SettingsPageFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
-        // Pre-select saved language
-        val savedLang = LocaleHelper.loadLocale(requireContext())
+// Pre-select saved language without triggering listener
+        val savedLang = LocaleHelper.loadLocale(requireContext()) ?: "en"
         val savedIndex = languageCodes.indexOf(savedLang)
-
-        // Set selection FIRST so it doesn’t trigger the listener
         if (savedIndex >= 0) {
             spinner.setSelection(savedIndex, false)
         }
 
-        // Now allow user-triggered listener
-        isUserSelecting = true
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener { var isUserSelecting  = true
 
-        // Spinner change listener
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (!isUserSelecting) {
-                    // Spinner is loading initially — ignore
-                    return
-                }
-
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedCode = languageCodes[position]
+                val currentLang = LocaleHelper.loadLocale(requireContext())
 
-                // Only change if different
-                if (selectedCode != savedLang) {
-                    LocaleHelper.setLocale(requireContext(), selectedCode)
-
+                if (selectedCode != currentLang) {
                     // Save new language
-                    prefs.edit().putString("app_lang", selectedCode).apply()
+                    prefs.edit().putString("language", selectedCode).apply()
 
+                    // Change app language
+                    LocaleHelper.setLocale(requireActivity(), selectedCode)
+
+                    // Recreate activity to apply change
                     requireActivity().recreate()
                 }
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
+
+        // -------------------- BIOMETRICS --------------------
+        val switchFingerprint = binding.switchFingerprint
+        val isEnabled = prefs.getBoolean("biometric_enabled", false)
+        switchFingerprint.isChecked = isEnabled
 
         switchFingerprint.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -161,26 +139,24 @@ class SettingsPageFragment : Fragment() {
             }
         }
 
-        // Update Profile button navigation
-        val updateProfileBtn = view.findViewById<Button>(R.id.button24)
-        updateProfileBtn.setOnClickListener {
-            // Check if the user is logged in with Google
+        // -------------------- UPDATE PROFILE --------------------
+        binding.button24.setOnClickListener {
             val googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
             if (googleAccount != null) {
-                // Google user: show read-only profile fragment
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, ReadOnlyFragment())
                     .addToBackStack(null)
                     .commit()
                 Toast.makeText(requireContext(), "Google account details cannot be edited", Toast.LENGTH_SHORT).show()
             } else {
-                // Regular email/password user: allow editing
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, EditProfileFragment())
                     .addToBackStack(null)
                     .commit()
             }
         }
+
+        // -------------------- BOTTOM NAVIGATION --------------------
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -189,46 +165,36 @@ class SettingsPageFragment : Fragment() {
                         .commit()
                     true
                 }
-
                 R.id.nav_garden -> {
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, MyGardenFragment())
                         .commit()
                     true
                 }
-
                 R.id.nav_camera -> {
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, IdentifyPlantCameraFragment())
                         .commit()
                     true
                 }
-
                 R.id.nav_settings -> {
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, SettingsPageFragment())
                         .commit()
                     true
                 }
-
                 else -> false
             }
         }
 
-        // Logout button
-        val logoutBtn = view.findViewById<Button>(R.id.Logoutbtn)
-        logoutBtn.setOnClickListener {
-            // Clear local session info
-            val sharedPrefs = requireActivity().getSharedPreferences("UserPrefs", 0)
-            sharedPrefs.edit().clear().apply()
+        // -------------------- LOGOUT --------------------
+        binding.Logoutbtn.setOnClickListener {
+            requireActivity().getSharedPreferences("UserPrefs", 0).edit().clear().apply()
 
-            // Sign out Google if needed
             googleSignInClient.signOut().addOnCompleteListener {
-                // Optional: revoke access to force account chooser next time
                 googleSignInClient.revokeAccess()
             }
 
-            // Navigate to LoginFragment
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, LoginFragment())
                 .commit()

@@ -1,5 +1,6 @@
 package com.example.pocketgarden
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,7 +12,15 @@ import androidx.core.view.WindowInsetsCompat
 
 
 class MainActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        val savedLang = LocaleHelper.loadLocale(newBase)  // get saved language
+        val context = LocaleHelper.setLocale(newBase, savedLang)  // wrap context with locale
+        super.attachBaseContext(context)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)

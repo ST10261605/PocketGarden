@@ -1,9 +1,48 @@
 <resources>
+
+    <!-- My Garden Page -->
+    <string name="my_garden">My Tuin</string>
+    <string name="empty_garden">Jou tuin is leeg</string>
+    <string name="no_plants_yet">Jy het nog geen plante bygevoeg nie</string>
+    <string name="tap_camera_to_add">Tik die kamera-ikoon om ’n nuwe plant by te voeg</string>
+
+    <!-- Plant Card -->
+    <string name="plant_image">Plantbeeld</string>
+    <string name="plant_name">Plantnaam</string>
+    <string name="water_reminder">Waterherinnering</string>
+    <string name="fertilizer_reminder">Kunsmisherinnering</string>
+    <string name="remove">Verwyder</string>
+    <string name="no_reminders_set">Geen herinneringe gestel nie</string>
+
+
+    <!-- Settings Page -->
     <string name="settings_header">Instellings en Meer</string>
     <string name="water_calculator">Water Berekenaar</string>
     <string name="set_language">Stel Taal</string>
     <string name="enable_fingerprint">Aktiveer Vingerafdruk</string>
     <string name="notifications">Kennisgewings</string>
-    <string name="update_profile">Werk Profiel Inligting By</string>
+    <string name="update_profile_information">Werk Profiel Inligting By</string>
     <string name="logout">Teken Uit</string>
+
+    <!-- Bottom Nav Bar -->
+    <string name="nav_home">Tuis</string>
+    <string name="nav_diagnose">Diagnoseer</string>
+    <string name="nav_camera">Kamera</string>
+    <string name="nav_garden">My Tuin</string>
+    <string name="nav_more">Meer</string>
+
+    <!-- Update Profile -->
+    <string name="edit_profile">Redigeer Profiel</string>
+    <string name="update_email">Werk E-pos By</string>
+    <string name="email_address">E-pos adres</string>
+    <string name="change_password">Verander Wagwoord</string>
+    <string name="current_password">Huidige wagwoord</string>
+    <string name="new_password">Nuwe wagwoord</string>
+    <string name="confirm_new_password">Bevestig nuwe wagwoord</string>
+    <string name="update_profile">Werk Profiel Op</string>
+    <string name="back">Terug</string>
+    <string name="change_photo">Verander Foto</string>
+    <string name="profile_image">Profielfoto</string>
+
+
 </resources>

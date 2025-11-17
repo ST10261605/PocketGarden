@@ -1,9 +1,47 @@
 <resources>
+
+    <!-- My Garden Page -->
+    <string name="my_garden">Ingadi Yami</string>
+    <string name="empty_garden">Ingadi yakho ayinalutho</string>
+    <string name="no_plants_yet">Awukange wengeze izitshalo okwamanje</string>
+    <string name="tap_camera_to_add">Thepha isithonjana sekhamera ukuze wengeze isitshalo esisha</string>
+
+    <!-- Plant Card -->
+    <string name="plant_image">Isithombe sesitshalo</string>
+    <string name="plant_name">Igama lesitshalo</string>
+    <string name="water_reminder">Isikhumbuzi sokunisela</string>
+    <string name="fertilizer_reminder">Isikhumbuzi se-fertilizer</string>
+    <string name="remove">Susa</string>
+    <string name="no_reminders_set">Azikho izikhumbuzi ezisethiwe</string>
+
+
+    <!--Settings Page -->
     <string name="settings_header">Izilungiselelo nokunye</string>
     <string name="water_calculator">Isibali Sokunisela</string>
     <string name="set_language">Setha Ulimi</string>
     <string name="enable_fingerprint">Vula Ukuqinisekisa Ngezitho</string>
     <string name="notifications">Izaziso</string>
-    <string name="update_profile">Buyekeza Ulwazi Lwephrofayela</string>
+    <string name="update_profile_information">Buyekeza Ulwazi Lwephrofayela</string>
     <string name="logout">Phuma</string>
+
+    <!-- Bottom Nav Bar -->
+    <string name="nav_home">Ikhaya</string>
+    <string name="nav_diagnose">Hlola</string>
+    <string name="nav_camera">Ikhamera</string>
+    <string name="nav_garden">Ingadi Yami</string>
+    <string name="nav_more">Okuningi</string>
+
+    <!-- Update Profile -->
+    <string name="edit_profile">Hlela Iphrofayela</string>
+    <string name="update_email">Buyekeza I-imeyili</string>
+    <string name="email_address">Ikheli le-imeyili</string>
+    <string name="change_password">Shintsha Iphasiwedi</string>
+    <string name="current_password">Iphasiwedi yamanje</string>
+    <string name="new_password">Iphasiwedi entsha</string>
+    <string name="confirm_new_password">Qinisekisa iphasiwedi entsha</string>
+    <string name="update_profile">Buyekeza Iphrofayela</string>
+    <string name="back">Emuva</string>
+    <string name="change_photo">Shintsha Isithombe</string>
+    <string name="profile_image">Isithombe sephrofayela</string>
+
 </resources>

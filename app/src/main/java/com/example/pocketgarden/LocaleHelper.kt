@@ -3,13 +3,11 @@ package com.example.pocketgarden
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import java.util.Locale
+import java.util.*
 
 object LocaleHelper {
 
     fun setLocale(context: Context, language: String): Context {
-        saveLanguagePreference(context, language)
-
         val locale = Locale(language)
         Locale.setDefault(locale)
 
@@ -24,13 +22,8 @@ object LocaleHelper {
         }
     }
 
-    private fun saveLanguagePreference(context: Context, lang: String) {
+    fun loadLocale(context: Context): String {
         val prefs = context.getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        prefs.edit().putString("language", lang).apply()
-    }
-
-    fun loadLocale(context: Context): String? {
-        val prefs = context.getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        return prefs.getString("language", "en")
+        return prefs.getString("language", "en") ?: "en"
     }
 }
