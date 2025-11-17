@@ -62,22 +62,36 @@ class SettingsPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //biometrics
-        val switchFingerprint = view.findViewById< MaterialSwitch>(R.id.switchFingerprint)
-        val prefs = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        val isEnabled = prefs.getBoolean("biometric_enabled", false)
-        switchFingerprint.isChecked = isEnabled
+        //Language spinner
         val spinner = view.findViewById<Spinner>(R.id.spinner)
 
+        //Biometrics
+        val prefs = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
+        val isEnabled = prefs.getBoolean("biometric_enabled", false)
+        val switchFingerprint = view.findViewById< MaterialSwitch>(R.id.switchFingerprint)
+        switchFingerprint.isChecked = isEnabled
+
+        var isUserSelecting = false // Prevent infinite loop
+
+        // Load languages from arrays.xml
         val languages = resources.getStringArray(R.array.languages)
+        val languageCodes = resources.getStringArray(R.array.language_codes)
+
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
         // Pre-select saved language
         val savedLang = LocaleHelper.loadLocale(requireContext())
-        val langCodes = resources.getStringArray(R.array.language_codes)
-        val index = langCodes.indexOf(savedLang)
-        if (index >= 0) spinner.setSelection(index)
+        val savedIndex = languageCodes.indexOf(savedLang)
+
+        // Set selection FIRST so it doesn’t trigger the listener
+        if (savedIndex >= 0) {
+            spinner.setSelection(savedIndex, false)
+        }
+
+        // Now allow user-triggered listener
+        isUserSelecting = true
 
         // Spinner change listener
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -87,12 +101,22 @@ class SettingsPageFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                val selectedCode = langCodes[position]
-                val activity = requireActivity()
-                LocaleHelper.setLocale(activity, selectedCode)
+                if (!isUserSelecting) {
+                    // Spinner is loading initially — ignore
+                    return
+                }
 
-                // Recreate activity to apply new locale
-                activity.recreate()
+                val selectedCode = languageCodes[position]
+
+                // Only change if different
+                if (selectedCode != savedLang) {
+                    LocaleHelper.setLocale(requireContext(), selectedCode)
+
+                    // Save new language
+                    prefs.edit().putString("app_lang", selectedCode).apply()
+
+                    requireActivity().recreate()
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}
