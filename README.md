@@ -58,8 +58,7 @@ Allows users to manage their application preferences
 
 Connects to REST API allowing for data synchronisation
 
-Offline Mode enabled for specific features such as plant identification
-
+Offline Mode enabled for specific features such as Plant Notes
 
 • Real-time Notifications
 
