@@ -8,5 +8,6 @@
     <color name="water_blue">#FF2196F3</color>
     <color name="fertilizer_green">#FF4CAF50</color>
     <color name="error_red">#FFF44336</color>
+    <color name="blue">#FF2196F3</color>
 
 </resources>

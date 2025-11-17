@@ -12,21 +12,26 @@ import com.example.pocketgarden.AppDatabase
 import com.example.pocketgarden.FirestoreSyncRepository
 import com.example.pocketgarden.data.local.PlantDAO
 import com.example.pocketgarden.data.local.PlantEntity
+import com.example.pocketgarden.data.local.PlantNote
+import com.example.pocketgarden.data.local.PlantNoteDAO
 import com.example.pocketgarden.data.local.SyncStatus
 import com.example.pocketgarden.network.PlantIdApi
 import com.example.pocketgarden.network.IdentificationRequestV3
 import com.example.pocketgarden.network.IdentificationResponse // Add this import
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import kotlin.text.insert
 
 class PlantRepository(
     private val api: PlantIdApi,
     private val plantDao: PlantDAO,
     val apiKeyProvider: ApiKeyProvider, // interface to get API key or proxy URL
     private val firestoreSyncRepository: FirestoreSyncRepository,
-    private val connectivityManager: ConnectivityManager
+    private val connectivityManager: ConnectivityManager,
+    private val plantNoteDao: PlantNoteDAO
 ) {
 
     sealed class SyncResult {
@@ -70,6 +75,31 @@ class PlantRepository(
             // If never synced, just delete locally
             plantDao.delete(plant)
         }
+    }
+
+    //plant note functionality -- for offline sync feature
+    suspend fun addPlantNote(plantLocalId: Long, content: String) {
+        val note = PlantNote(
+            plantLocalId = plantLocalId,
+            content = content
+        )
+        plantNoteDao.insert(note)
+    }
+
+    fun getPlantNotes(plantLocalId: Long): Flow<List<PlantNote>> {
+        return plantNoteDao.getNotesForPlant(plantLocalId)
+    }
+
+    suspend fun deletePlantNote(note: PlantNote) {
+        plantNoteDao.delete(note)
+    }
+
+    suspend fun updatePlantNote(note: PlantNote) {
+        plantNoteDao.update(note)
+    }
+
+    suspend fun getNoteCountForPlant(plantLocalId: Long): Int {
+        return plantNoteDao.getNoteCountForPlant(plantLocalId)
     }
 
     suspend fun syncPendingPlants(): SyncResult {
@@ -170,6 +200,7 @@ class PlantRepository(
                 val db = AppDatabase.getDatabase(context)
                 val dao = db.plantDao()
                 val api = PlantIdApi.create()
+                val plantNoteDao = db.plantNoteDao()
 
                 // Get ConnectivityManager
                 val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -218,7 +249,8 @@ class PlantRepository(
                     plantDao = dao,
                     apiKeyProvider = provider,
                     firestoreSyncRepository = firestoreSyncRepository,
-                    connectivityManager = connectivityManager
+                    connectivityManager = connectivityManager,
+                    plantNoteDao = plantNoteDao
                 ).also { INSTANCE = it }
             }
         }

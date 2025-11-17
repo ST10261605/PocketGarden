@@ -6,11 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.pocketgarden.data.local.PlantDAO
 import com.example.pocketgarden.data.local.PlantEntity
+import com.example.pocketgarden.data.local.PlantNote
+import com.example.pocketgarden.data.local.PlantNoteDAO
 
-@Database(entities = [User::class, PlantEntity::class] , version = 5)
+@Database(entities = [User::class, PlantEntity::class, PlantNote::class] , version = 6)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDAO
     abstract fun plantDao(): PlantDAO
+
+    abstract fun plantNoteDao(): PlantNoteDAO
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
@@ -22,7 +26,7 @@ abstract class AppDatabase: RoomDatabase() {
                     AppDatabase::class.java,
                     "pocketgarden_db"
                 )
-                    .fallbackToDestructiveMigration() // handles schema change
+                    .fallbackToDestructiveMigration() // handles schema change -- when readying app for google play store make sure to remove this
                     .build()
                     .also { INSTANCE = it }
             }

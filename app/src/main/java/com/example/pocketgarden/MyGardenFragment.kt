@@ -85,7 +85,9 @@ class MyGardenFragment : Fragment() {
         plantAdapter = PlantAdapter(
             onRemoveClick = { plant -> removePlant(plant) },
             onWaterReminderClick = { plant -> setWaterReminder(plant) },
-            onFertilizerReminderClick = { plant -> setFertilizerReminder(plant) }
+            onFertilizerReminderClick = { plant -> setFertilizerReminder(plant) },
+            plantRepository = plantRepository, // Passing the repository
+            lifecycleOwner = viewLifecycleOwner // Passing the lifecycle owner
         )
 
         recyclerView.apply {
