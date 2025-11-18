@@ -66,7 +66,7 @@ class NotificationHelper(private val context: Context) {
         )
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID_WATER)
-            .setSmallIcon(R.drawable.ic_water_drop) // You'll need to add this icon
+            .setSmallIcon(R.drawable.ic_water_drop)
             .setContentTitle("Time to water your plant!")
             .setContentText("Your $plantName needs watering")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -94,7 +94,7 @@ class NotificationHelper(private val context: Context) {
         )
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID_FERTILIZER)
-            .setSmallIcon(R.drawable.ic_fertilizer) // You'll need to add this icon
+            .setSmallIcon(R.drawable.ic_fertilizer)
             .setContentTitle("Time to fertilize your plant!")
             .setContentText("Your $plantName needs fertilizing")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
