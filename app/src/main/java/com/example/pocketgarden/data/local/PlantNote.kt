@@ -10,5 +10,7 @@ data class PlantNote(
     val plantLocalId: Long, // reference to the plant
     val content: String,
     val createdAt: Long = System.currentTimeMillis(),
-    val updatedAt: Long = System.currentTimeMillis()
+    val updatedAt: Long = System.currentTimeMillis(),
+    val isSynced: Boolean = false, // Track sync status
+    val firestoreId: String? = null // Firestore document ID
 )

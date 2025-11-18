@@ -59,6 +59,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.process)
     val camerax_version = "1.3.4"
 
     //CameraX dependencies

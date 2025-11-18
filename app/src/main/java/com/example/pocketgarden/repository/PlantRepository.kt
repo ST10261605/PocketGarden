@@ -1,8 +1,6 @@
 package com.example.pocketgarden.repository
 
 import android.content.Context
-import android.content.SyncResult
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.ConnectivityManager
 import android.net.Uri
@@ -17,21 +15,21 @@ import com.example.pocketgarden.data.local.PlantNoteDAO
 import com.example.pocketgarden.data.local.SyncStatus
 import com.example.pocketgarden.network.PlantIdApi
 import com.example.pocketgarden.network.IdentificationRequestV3
-import com.example.pocketgarden.network.IdentificationResponse // Add this import
+import com.example.pocketgarden.network.IdentificationResponse
+import com.example.pocketgarden.network.NetworkHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import java.io.ByteArrayOutputStream
 import java.io.InputStream
-import kotlin.text.insert
 
 class PlantRepository(
     private val api: PlantIdApi,
     private val plantDao: PlantDAO,
-    val apiKeyProvider: ApiKeyProvider, // interface to get API key or proxy URL
+    val apiKeyProvider: ApiKeyProvider,
     private val firestoreSyncRepository: FirestoreSyncRepository,
     private val connectivityManager: ConnectivityManager,
-    private val plantNoteDao: PlantNoteDAO
+    private val plantNoteDao: PlantNoteDAO,
+    private val syncRepository: SyncRepository
 ) {
 
     sealed class SyncResult {
@@ -40,8 +38,8 @@ class PlantRepository(
         data class ERROR(val message: String) : SyncResult()
     }
 
-    //function to add a plant offline, the pending images are only sent for identification once user is back online
-    //adding plant to roomdb until user returns online
+    // ... your existing methods remain the same ...
+
     suspend fun addPlantOffline(imageUri: String): Long {
         val entity = PlantEntity(imageUri = imageUri, synced = false, status = "PENDING")
         return plantDao.insert(entity)
@@ -77,29 +75,49 @@ class PlantRepository(
         }
     }
 
-    //plant note functionality -- for offline sync feature
-    suspend fun addPlantNote(plantLocalId: Long, content: String) {
-        val note = PlantNote(
-            plantLocalId = plantLocalId,
-            content = content
-        )
+    // Plant note functionality -- updated with offline sync feature
+    suspend fun addPlantNote(note: PlantNote) {
         plantNoteDao.insert(note)
+        // try to sync immediately if online
+        try {
+            syncRepository.syncNotes()
+        } catch (e: Exception) {
+            // Note will remain unsynced and will be synced later
+            Log.d("PlantRepository", "Note saved offline, will sync later")
+        }
     }
 
     fun getPlantNotes(plantLocalId: Long): Flow<List<PlantNote>> {
         return plantNoteDao.getNotesForPlant(plantLocalId)
     }
 
+    // Delete plant note -- with offline sync
     suspend fun deletePlantNote(note: PlantNote) {
         plantNoteDao.delete(note)
+        // try to delete from Firestore
+        syncRepository.deleteNoteFromFirestore(note)
     }
 
+    // Update plant note -- with offline sync
     suspend fun updatePlantNote(note: PlantNote) {
-        plantNoteDao.update(note)
+        val updatedNote = note.copy(updatedAt = System.currentTimeMillis(), isSynced = false)
+        plantNoteDao.update(updatedNote)
+        // Try to sync
+        try {
+            syncRepository.syncNotes()
+        } catch (e: Exception) {
+            Log.d("PlantRepository", "Note update saved offline, will sync later")
+        }
     }
 
+    // Function to get total number of notes for plants
     suspend fun getNoteCountForPlant(plantLocalId: Long): Int {
         return plantNoteDao.getNoteCountForPlant(plantLocalId)
+    }
+
+    // Function to sync all plant notes
+    suspend fun syncAllNotes() {
+        syncRepository.syncNotes()
     }
 
     suspend fun syncPendingPlants(): SyncResult {
@@ -210,6 +228,17 @@ class PlantRepository(
                     enableOfflinePersistence()
                 }
 
+                // Create NetworkHelper
+                val networkHelper = NetworkHelper(context)
+
+                // Create SyncRepository
+                val syncRepository = SyncRepository(
+                    plantNoteDao = plantNoteDao,
+                    plantDao = dao,
+                    networkHelper = networkHelper,
+                    context = context
+                )
+
                 val provider = object : ApiKeyProvider {
                     override fun getApiKey(): String = "mRnpO239bpQY3EcOGlxTgQ9GfXl2Krg6Xqqg4WhDkzzXEwSvlX"
 
@@ -250,7 +279,8 @@ class PlantRepository(
                     apiKeyProvider = provider,
                     firestoreSyncRepository = firestoreSyncRepository,
                     connectivityManager = connectivityManager,
-                    plantNoteDao = plantNoteDao
+                    plantNoteDao = plantNoteDao,
+                    syncRepository = syncRepository // Added this missing parameter
                 ).also { INSTANCE = it }
             }
         }
@@ -332,14 +362,14 @@ class PlantRepository(
             }
         }
     }
-    }
+}
 
 sealed class IdentificationResult {
-    data class Success(val response: IdentificationResponse?): IdentificationResult() // Fixed: removed package prefix
+    data class Success(val response: IdentificationResponse?): IdentificationResult()
     data class Error(val code: Int, val message: String): IdentificationResult()
 }
 
-// small interface to provide key & helper to read URIs (so repository stays testable)
+// Small interface to provide key & helper to read URIs (so repository stays testable)
 interface ApiKeyProvider {
     fun getApiKey(): String
     suspend fun readUriAsBase64(uriString: String): String

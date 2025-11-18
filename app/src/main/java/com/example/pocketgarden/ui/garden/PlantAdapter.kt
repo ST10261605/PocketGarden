@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pocketgarden.R
 import com.example.pocketgarden.data.local.PlantEntity
+import com.example.pocketgarden.data.local.PlantNote
+import com.example.pocketgarden.network.NetworkHelper
 import com.example.pocketgarden.repository.PlantRepository
 import kotlinx.coroutines.launch
 
@@ -24,8 +26,9 @@ class PlantAdapter(
     private val onRemoveClick: (PlantEntity) -> Unit,
     private val onWaterReminderClick: (PlantEntity) -> Unit,
     private val onFertilizerReminderClick: (PlantEntity) -> Unit,
-    private val plantRepository: PlantRepository, // Add repository
-    private val lifecycleOwner: LifecycleOwner // Add lifecycle owner for coroutines
+    private val plantRepository: PlantRepository, // Added repository
+    private val lifecycleOwner: LifecycleOwner, // Added lifecycle owner for coroutines
+    private val networkHelper: NetworkHelper
 ) : ListAdapter<PlantEntity, PlantAdapter.PlantViewHolder>(PlantDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
@@ -121,8 +124,13 @@ class PlantAdapter(
             addNoteButton.setOnClickListener {
                 val noteContent = newNoteInput.text.toString().trim()
                 if (noteContent.isNotEmpty()) {
-                    lifecycleOwner.lifecycleScope.launch {
-                        plantRepository.addPlantNote(plant.localId, noteContent)
+                    // Access through the outer class reference
+                    this@PlantAdapter.lifecycleOwner.lifecycleScope.launch {
+                        val note = PlantNote(
+                            plantLocalId = plant.localId,
+                            content = noteContent
+                        )
+                        this@PlantAdapter.plantRepository.addPlantNote(note)
                         newNoteInput.text.clear()
                     }
                 }

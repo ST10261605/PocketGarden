@@ -23,4 +23,14 @@ interface PlantNoteDAO {
 
     @Query("SELECT COUNT(*) FROM plant_notes WHERE plantLocalId = :plantLocalId")
     suspend fun getNoteCountForPlant(plantLocalId: Long): Int
+
+    // Sync-related queries
+    @Query("SELECT * FROM plant_notes WHERE isSynced = 0")
+    suspend fun getUnsyncedNotes(): List<PlantNote>
+
+    @Query("UPDATE plant_notes SET isSynced = 1, firestoreId = :firestoreId WHERE id = :localId")
+    suspend fun markNoteAsSynced(localId: String, firestoreId: String)
+
+    @Query("SELECT * FROM plant_notes WHERE firestoreId = :firestoreId")
+    suspend fun getNoteByFirestoreId(firestoreId: String): PlantNote?
 }

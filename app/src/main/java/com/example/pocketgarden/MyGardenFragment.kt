@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pocketgarden.data.local.PlantEntity
-import com.example.pocketgarden.databinding.FragmentHomePageBinding
 import com.example.pocketgarden.databinding.FragmentMyGardenBinding
+import com.example.pocketgarden.network.NetworkHelper
 import com.example.pocketgarden.repository.PlantRepository
 import com.example.pocketgarden.ui.garden.PlantAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -23,6 +23,7 @@ class MyGardenFragment : Fragment() {
     private lateinit var plantAdapter: PlantAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var emptyState: View
+    private lateinit var networkHelper: NetworkHelper
     private var _binding: FragmentMyGardenBinding? = null
     private val binding get() = _binding!!
 
@@ -76,6 +77,7 @@ class MyGardenFragment : Fragment() {
         emptyState = view.findViewById(R.id.emptyState)
 
         plantRepository = PlantRepository.getInstance(requireContext())
+        networkHelper = NetworkHelper(requireContext()) // Initialize NetworkHelper
         setupRecyclerView()
         observePlants()
 
@@ -87,7 +89,8 @@ class MyGardenFragment : Fragment() {
             onWaterReminderClick = { plant -> setWaterReminder(plant) },
             onFertilizerReminderClick = { plant -> setFertilizerReminder(plant) },
             plantRepository = plantRepository, // Passing the repository
-            lifecycleOwner = viewLifecycleOwner // Passing the lifecycle owner
+            lifecycleOwner = viewLifecycleOwner, // Passing the lifecycle owner
+            networkHelper = networkHelper // Passing the NetworkHelper
         )
 
         recyclerView.apply {

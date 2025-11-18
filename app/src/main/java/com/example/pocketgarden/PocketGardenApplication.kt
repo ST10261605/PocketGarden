@@ -1,28 +1,35 @@
 package com.example.pocketgarden
 
 import android.app.Application
-import com.example.pocketgarden.worker.FirestoreSyncWorker
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ProcessLifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import com.example.pocketgarden.network.NetworkHelper
+import com.example.pocketgarden.repository.PlantRepository
+import kotlinx.coroutines.launch
 
 class PocketGardenApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        // Initialize Firebase (this happens automatically with google-services.json)
-        // Schedule periodic sync
-        scheduleFirestoreSync()
+        setupPeriodicSync()
     }
 
-    private fun scheduleFirestoreSync() {
-        val constraints = androidx.work.Constraints.Builder()
-            .setRequiredNetworkType(androidx.work.NetworkType.CONNECTED)
-            .build()
+    private fun setupPeriodicSync() {
+        val networkHelper = NetworkHelper(this)
 
-        val syncWorkRequest = androidx.work.PeriodicWorkRequestBuilder<FirestoreSyncWorker>(
-            1, java.util.concurrent.TimeUnit.HOURS
-        ).setConstraints(constraints)
-            .build()
-
-        androidx.work.WorkManager.getInstance(this).enqueue(syncWorkRequest)
+        // Sync when app comes to foreground
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onStart(owner: LifecycleOwner) {
+                super.onStart(owner)
+                if (networkHelper.isOnline()) {
+                    owner.lifecycleScope.launch {
+                        val plantRepository = PlantRepository.getInstance(this@PocketGardenApplication)
+                        plantRepository.syncAllNotes()
+                    }
+                }
+            }
+        })
     }
 }
