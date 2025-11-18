@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.PocketGarden" parent="Base.Theme.PocketGarden" />
+
 </resources>

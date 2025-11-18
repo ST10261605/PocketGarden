@@ -7,14 +7,9 @@
         android:title="@string/nav_home" />
 
     <item
-        android:id="@+id/nav_diagnose"
-        android:icon="@drawable/ic_diagnose"
-        android:title="@string/nav_diagnose" />
-
-    <item
         android:id="@+id/nav_camera"
         android:icon="@drawable/ic_camera"
-        android:title="" />
+        android:title="@string/identify_plant" />
 
     <item
         android:id="@+id/nav_garden"
