@@ -1,7 +1,6 @@
 package com.example.pocketgarden.repository
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.util.Base64
@@ -12,15 +11,19 @@ import com.example.pocketgarden.data.local.PlantDAO
 import com.example.pocketgarden.data.local.PlantEntity
 import com.example.pocketgarden.data.local.PlantNote
 import com.example.pocketgarden.data.local.PlantNoteDAO
+import com.example.pocketgarden.data.local.PlantReminder
+import com.example.pocketgarden.data.local.ReminderType
 import com.example.pocketgarden.data.local.SyncStatus
 import com.example.pocketgarden.network.PlantIdApi
 import com.example.pocketgarden.network.IdentificationRequestV3
 import com.example.pocketgarden.network.IdentificationResponse
 import com.example.pocketgarden.network.NetworkHelper
+import com.example.pocketgarden.notifications.AlarmScheduler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.io.InputStream
+import java.util.Calendar
 
 class PlantRepository(
     private val api: PlantIdApi,
@@ -29,7 +32,10 @@ class PlantRepository(
     private val firestoreSyncRepository: FirestoreSyncRepository,
     private val connectivityManager: ConnectivityManager,
     private val plantNoteDao: PlantNoteDAO,
-    private val syncRepository: SyncRepository
+    private val syncRepository: SyncRepository,
+    private val plantReminderDao: com.example.pocketgarden.data.local.PlantReminderDAO, // Add this
+    private val alarmScheduler: AlarmScheduler, // Add this
+    private val context: Context // Add this for the alarm scheduler
 ) {
 
     sealed class SyncResult {
@@ -37,8 +43,6 @@ class PlantRepository(
         data class SUCCESS(val successCount: Int, val failureCount: Int) : SyncResult()
         data class ERROR(val message: String) : SyncResult()
     }
-
-    // ... your existing methods remain the same ...
 
     suspend fun addPlantOffline(imageUri: String): Long {
         val entity = PlantEntity(imageUri = imageUri, synced = false, status = "PENDING")
@@ -203,6 +207,92 @@ class PlantRepository(
         }
     }
 
+    // Reminder methods
+    suspend fun setWaterReminder(plant: PlantEntity, frequencyDays: Int, timeOfDay: String) {
+        // Parse timeOfDay (e.g., "09:00") and calculate next reminder time
+        val calendar = Calendar.getInstance().apply {
+            val timeParts = timeOfDay.split(":").map { it.toInt() }
+            val hour = timeParts[0]
+            val minute = timeParts[1]
+            set(Calendar.HOUR_OF_DAY, hour)
+            set(Calendar.MINUTE, minute)
+            set(Calendar.SECOND, 0)
+
+            // If the time has already passed today, schedule for tomorrow
+            if (timeInMillis <= System.currentTimeMillis()) {
+                add(Calendar.DAY_OF_YEAR, 1)
+            }
+        }
+
+        val reminder = PlantReminder(
+            plantLocalId = plant.localId,
+            plantName = plant.name,
+            reminderType = ReminderType.WATERING,
+            reminderTime = calendar.timeInMillis,
+            repeatInterval = frequencyDays * 24 * 60 * 60 * 1000L // Convert days to milliseconds
+        )
+
+        plantReminderDao.insert(reminder)
+        alarmScheduler.scheduleReminder(reminder)
+
+        // Update plant entity
+        val updatedPlant = plant.copy(
+            wateringFrequency = frequencyDays,
+            waterReminderEnabled = true,
+            nextWatering = calendar.timeInMillis,
+            updatedAt = System.currentTimeMillis()
+        )
+        plantDao.update(updatedPlant)
+    }
+
+    suspend fun cancelWaterReminder(plant: PlantEntity) {
+        val reminder = plantReminderDao.getReminderForPlant(plant.localId, ReminderType.WATERING)
+        reminder?.let {
+            alarmScheduler.cancelReminder(it.id)
+            plantReminderDao.delete(it)
+        }
+
+        // Update plant entity
+        val updatedPlant = plant.copy(
+            waterReminderEnabled = false,
+            nextWatering = null,
+            updatedAt = System.currentTimeMillis()
+        )
+        plantDao.update(updatedPlant)
+    }
+
+    suspend fun markPlantAsWatered(plant: PlantEntity) {
+        val now = System.currentTimeMillis()
+        val updatedPlant = plant.copy(
+            lastWateredAt = now,
+            nextWatering = now + (plant.wateringFrequency * 24 * 60 * 60 * 1000L),
+            updatedAt = now
+        )
+        plantDao.update(updatedPlant)
+
+        // Reschedule the reminder
+        val reminder = plantReminderDao.getReminderForPlant(plant.localId, ReminderType.WATERING)
+        reminder?.let {
+            val newReminder = it.copy(
+                reminderTime = updatedPlant.nextWatering ?: (now + plant.wateringFrequency * 24 * 60 * 60 * 1000L),
+                updatedAt = now
+            )
+            plantReminderDao.update(newReminder)
+            alarmScheduler.rescheduleReminder(newReminder)
+        }
+    }
+
+    suspend fun getRemindersForPlant(plantLocalId: Long): Flow<List<PlantReminder>> {
+        return plantReminderDao.getRemindersForPlant(plantLocalId)
+    }
+
+    suspend fun rescheduleAllReminders() {
+        val activeReminders = plantReminderDao.getActiveReminders()
+        activeReminders.forEach { reminder ->
+            alarmScheduler.scheduleReminder(reminder)
+        }
+    }
+
     private fun isOnline(): Boolean {
         val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo != null && networkInfo.isConnected
@@ -219,6 +309,7 @@ class PlantRepository(
                 val dao = db.plantDao()
                 val api = PlantIdApi.create()
                 val plantNoteDao = db.plantNoteDao()
+                val plantReminderDao = db.plantReminderDao() // Add this
 
                 // Get ConnectivityManager
                 val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -230,6 +321,9 @@ class PlantRepository(
 
                 // Create NetworkHelper
                 val networkHelper = NetworkHelper(context)
+
+                // Create AlarmScheduler
+                val alarmScheduler = AlarmScheduler(context) // Add this
 
                 // Create SyncRepository
                 val syncRepository = SyncRepository(
@@ -280,7 +374,10 @@ class PlantRepository(
                     firestoreSyncRepository = firestoreSyncRepository,
                     connectivityManager = connectivityManager,
                     plantNoteDao = plantNoteDao,
-                    syncRepository = syncRepository // Added this missing parameter
+                    syncRepository = syncRepository,
+                    plantReminderDao = plantReminderDao, // Add this
+                    alarmScheduler = alarmScheduler, // Add this
+                    context = context // Add this
                 ).also { INSTANCE = it }
             }
         }

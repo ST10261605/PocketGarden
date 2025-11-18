@@ -15,6 +15,9 @@ data class PlantEntity(
     val lastWateredAt: Long? = null,
     val lastFertilizedAt: Long? = null,
     val watered: Boolean = false,
+    val wateringFrequency: Int = 7, // Default: water every 7 days
+    val nextWatering: Long? = null,
+    val waterReminderEnabled: Boolean = false,
     val fertilized: Boolean = false,
     val synced: Boolean = false, // whether identification completed & saved
     val status: String = "PENDING", // PENDING, IDENTIFIED, FAILED

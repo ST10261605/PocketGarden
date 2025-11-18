@@ -14,6 +14,7 @@ import com.example.pocketgarden.databinding.FragmentMyGardenBinding
 import com.example.pocketgarden.network.NetworkHelper
 import com.example.pocketgarden.repository.PlantRepository
 import com.example.pocketgarden.ui.garden.PlantAdapter
+import com.example.pocketgarden.ui.garden.WaterReminderDialogFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -86,7 +87,7 @@ class MyGardenFragment : Fragment() {
     private fun setupRecyclerView() {
         plantAdapter = PlantAdapter(
             onRemoveClick = { plant -> removePlant(plant) },
-            onWaterReminderClick = { plant -> setWaterReminder(plant) },
+            onWaterReminderClick = { plant -> showWaterReminderDialog(plant) },
             onFertilizerReminderClick = { plant -> setFertilizerReminder(plant) },
             plantRepository = plantRepository, // Passing the repository
             lifecycleOwner = viewLifecycleOwner, // Passing the lifecycle owner
@@ -97,6 +98,20 @@ class MyGardenFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = plantAdapter
         }
+    }
+
+    // This method shows the water reminder dialog
+    private fun showWaterReminderDialog(plant: PlantEntity) {
+        Log.d("MyGardenFragment", "Showing water reminder dialog for: ${plant.name}")
+
+        val dialog = WaterReminderDialogFragment(
+            plant = plant,
+            plantRepository = plantRepository
+        ) {
+            // Refresh the plant list when reminder is set/updated
+            observePlants()
+        }
+        dialog.show(parentFragmentManager, WaterReminderDialogFragment.TAG)
     }
 
     private fun observePlants() {
@@ -136,8 +151,8 @@ class MyGardenFragment : Fragment() {
     }
 
     private fun setWaterReminder(plant: PlantEntity) {
-        // TODO: Implement water reminder functionality
-        Log.d("MyGardenFragment", "Set water reminder for: ${plant.name}")
+        Log.d("MyGardenFragment", "setWaterReminder called for: ${plant.name}")
+        showWaterReminderDialog(plant) // Redirect to the dialog method
     }
 
     private fun setFertilizerReminder(plant: PlantEntity) {

@@ -21,6 +21,9 @@ import com.example.pocketgarden.data.local.PlantNote
 import com.example.pocketgarden.network.NetworkHelper
 import com.example.pocketgarden.repository.PlantRepository
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class PlantAdapter(
     private val onRemoveClick: (PlantEntity) -> Unit,
@@ -28,7 +31,7 @@ class PlantAdapter(
     private val onFertilizerReminderClick: (PlantEntity) -> Unit,
     private val plantRepository: PlantRepository, // Added repository
     private val lifecycleOwner: LifecycleOwner, // Added lifecycle owner for coroutines
-    private val networkHelper: NetworkHelper
+    private val networkHelper: NetworkHelper,
 ) : ListAdapter<PlantEntity, PlantAdapter.PlantViewHolder>(PlantDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
@@ -81,6 +84,28 @@ class PlantAdapter(
 
             // Setup notes if the views exist
             setupNotes(plant)
+
+            // Setting up water reminder button
+            waterButton.setOnClickListener {
+                onWaterReminderClick(plant)
+            }
+
+            // Update reminder status text
+            updateReminderStatus(plant)
+        }
+
+        private fun updateReminderStatus(plant: PlantEntity) {
+            val statusText = if (plant.waterReminderEnabled && plant.nextWatering != null) {
+                val nextWateringDate = SimpleDateFormat(
+                    "MMM dd, yyyy 'at' hh:mm a",
+                    Locale.getDefault()
+                )
+                    .format(Date(plant.nextWatering!!))
+                "Next watering: $nextWateringDate"
+            } else {
+                "No water reminder set"
+            }
+            reminderStatus.text = statusText
         }
 
         private fun setupNotes(plant: PlantEntity) {

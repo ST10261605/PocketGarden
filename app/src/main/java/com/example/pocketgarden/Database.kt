@@ -8,13 +8,17 @@ import com.example.pocketgarden.data.local.PlantDAO
 import com.example.pocketgarden.data.local.PlantEntity
 import com.example.pocketgarden.data.local.PlantNote
 import com.example.pocketgarden.data.local.PlantNoteDAO
+import com.example.pocketgarden.data.local.PlantReminder
+import com.example.pocketgarden.data.local.PlantReminderDAO
 
-@Database(entities = [User::class, PlantEntity::class, PlantNote::class] , version = 6)
+@Database(entities = [User::class, PlantEntity::class, PlantNote::class, PlantReminder::class] , version = 7)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDAO
     abstract fun plantDao(): PlantDAO
 
     abstract fun plantNoteDao(): PlantNoteDAO
+
+    abstract fun plantReminderDao(): PlantReminderDAO
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
