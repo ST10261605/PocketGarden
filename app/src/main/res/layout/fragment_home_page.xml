@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-
         <!-- Search View -->
         <SearchView
             android:id="@+id/searchView3"
@@ -74,7 +73,7 @@
             android:layout_marginTop="32dp"
             android:background="#4F772D"
             android:padding="12dp"
-            android:text="Today's Care"
+            android:text="@string/todays_care"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
@@ -99,7 +98,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:text="Sunflower"
+            android:text="@string/sunflower"
             app:layout_constraintEnd_toStartOf="@+id/button4"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -110,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Watering"
+            android:text="@string/watering"
             app:layout_constraintEnd_toStartOf="@+id/button4"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -122,7 +121,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Watered"
+            android:text="@string/watered"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -132,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#4F772D"
-            android:text="Settings"
+            android:text="@string/settings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
 
@@ -153,7 +152,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:text="Orchid"
+            android:text="@string/orchid"
             app:layout_constraintEnd_toStartOf="@+id/button5"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -164,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Watering and Fertilizing"
+            android:text="@string/watering_fertilizing"
             app:layout_constraintEnd_toStartOf="@+id/button5"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -176,7 +175,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Watered"
+            android:text="@string/watered"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -187,7 +186,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Fertilized"
+            android:text="@string/fertilized"
             app:layout_constraintStart_toEndOf="@+id/checkBox3"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -197,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#4F772D"
-            android:text="Settings"
+            android:text="@string/settings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView11" />
 
@@ -209,7 +208,7 @@
             android:layout_marginTop="32dp"
             android:background="#4F772D"
             android:padding="12dp"
-            android:text="Gardening Tips"
+            android:text="@string/gardening_tips"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
@@ -225,7 +224,7 @@
             android:background="#4F772D"
             android:padding="16dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Water your plants early in the morning to reduce evaporation and give them time to absorb moisture before the heat of the day."
+            android:text="@string/gardening_tip_description"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
@@ -240,7 +239,7 @@
             android:layout_marginTop="32dp"
             android:background="#4F772D"
             android:padding="12dp"
-            android:text="Blogs"
+            android:text="@string/blogs"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
@@ -264,7 +263,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="7 Ways to Help Your Plants Survive a Heat Wave"
+            android:text="@string/heatwave_blog"
             app:layout_constraintEnd_toStartOf="@+id/imageButton5"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -294,7 +293,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Ageratum Monarch Magic- Butterfly Magnet"
+            android:text="@string/ageratum_blog"
             app:layout_constraintEnd_toStartOf="@+id/imageButton6"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -324,7 +323,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Tackling Weeds and Saving Your Back"
+            android:text="@string/tackling_weeds"
             app:layout_constraintEnd_toStartOf="@+id/imageButton8"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toBottomOf="@+id/imageView5" />
@@ -358,7 +357,6 @@
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <!-- References -->
     <!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/c44d6e19-ce45-42cb-9886-1be0be68e96b , Accessed: 2025-09-10, (Button Colour)-->
-    <!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-b426-df5c28672738 , Accessed: 2025-09-21  (Fixing Error)-->
+    <!--A.I: Deepseek, Author: Deepseek, URL: https://chat.deepseek.com/a/chat/s/d52c1b31-6dce-410f-->

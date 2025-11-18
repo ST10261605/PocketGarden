@@ -1,4 +1,22 @@
 <resources>
+    <!-- Home Screen -->
+    <string name="todays_care">Vandag se Versorging</string>
+    <string name="sunflower">Sonneblom</string>
+    <string name="watering">Besproeiing</string>
+    <string name="watered">Besproei</string>
+    <string name="fertilized">Bemes</string>
+    <string name="settings">Instellings</string>
+    <string name="gardening_tips">Tuinwenke</string>
+    <string name="gardening_tip_description">Berei jou plante vroeg in die oggend water om verdamping te verminder en hulle tyd te gee om vog op te neem voordat dit warm word.</string>
+    <string name="blogs">Blogs</string>
+    <string name="orchid">Orchidee</string>
+    <string name="watering_fertilizing">Besproeiing en Bemesting</string>
+    <string name="tackling_weeds">Onkruid Beveg en Jou Rug Beskerm</string>
+    <string name="ageratum_blog">Ageratum Monarch Magic - Skoenlappers Aantrekker</string>
+    <string name="heatwave_blog">7 Maniere om Jou Plante te Help Om \'n Hittegolf Te Oorleef</string>
+
+    <!-- Identify Plant Page -->
+    <string name="identify_plant">Plant Identifiseer</string>
 
     <!-- My Garden Page -->
     <string name="my_garden">My Tuin</string>

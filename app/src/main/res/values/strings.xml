@@ -10,6 +10,25 @@
     <!-- Google Login -->
     <string name="default_web_client_id">240577956919-94ff3o38oamd301s88evchmrs5e8a0fv.apps.googleusercontent.com</string>
 
+    <!-- Home Screen -->
+    <string name="todays_care">Today\'s Care</string>
+    <string name="sunflower">Sunflower</string>
+    <string name="watering">Watering</string>
+    <string name="watered">Watered</string>
+    <string name="fertilized">Fertilized</string>
+    <string name="settings">Settings</string>
+    <string name="gardening_tips">Gardening Tips</string>
+    <string name="gardening_tip_description">Water your plants early in the morning to reduce evaporation and give them time to absorb moisture before the heat of the day.</string>
+    <string name="blogs">Blogs</string>
+    <string name="orchid">Orchid</string>
+    <string name="watering_fertilizing">Watering and Fertilizing</string>
+    <string name="tackling_weeds">Tackling Weeds and Saving Your Back</string>
+    <string name="ageratum_blog">Ageratum Monarch Magic- Butterfly Magnet</string>
+    <string name="heatwave_blog">7 Ways to Help Your Plants Survive a Heat Wave</string>
+
+    <!-- Identify Plant Page -->
+    <string name="identify_plant">Identify Plant</string>
+
     <!-- My Garden Page -->
     <string name="my_garden">My Garden</string>
     <string name="empty_garden">Your garden is empty</string>

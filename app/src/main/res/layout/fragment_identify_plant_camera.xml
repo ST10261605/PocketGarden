@@ -25,7 +25,7 @@
         android:layout_marginTop="44dp"
         android:background="#31572C"
         android:fontFamily="sans-serif-medium"
-        android:text="Identify Plant"
+        android:text="@string/identify_plant"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"

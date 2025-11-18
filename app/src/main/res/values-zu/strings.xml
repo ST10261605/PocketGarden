@@ -1,5 +1,24 @@
 <resources>
 
+    <!-- Home Screen -->
+    <string name="todays_care">Ukunakekela Kwesikhathi Sanamuhla</string>
+    <string name="sunflower">Ilanga</string>
+    <string name="watering">Ukufafaza</string>
+    <string name="watered">Kufafazwe</string>
+    <string name="fertilized">Kufakelwe Umanyolo</string>
+    <string name="settings">Izilungiselelo</string>
+    <string name="gardening_tips">Amathiphu Okulima</string>
+    <string name="gardening_tip_description">Fafaza izitshalo zakho ekuseni ukuze unciphise ukunyamalala kwamanzi futhi unike isikhathi sokumunca ngaphambi kokushisa kosuku.</string>
+    <string name="blogs">Amabhulogi</string>
+    <string name="orchid">I-Orchid</string>
+    <string name="watering_fertilizing">Ukufafaza Nokunisela</string>
+    <string name="tackling_weeds">Ukulwa Namawe Nokulondoloza Umhlane Wakho</string>
+    <string name="ageratum_blog">Ageratum Monarch Magic - Isimangaliso SamaButterfly</string>
+    <string name="heatwave_blog">Izindlela Eziyisikhombisa Zokusiza Izitshalo Zakho Ukuphila Eshisayo</string>
+
+    <!-- Identify Plant Page -->
+    <string name="identify_plant">Khomba Isitshalo</string>
+
     <!-- My Garden Page -->
     <string name="my_garden">Ingadi Yami</string>
     <string name="empty_garden">Ingadi yakho ayinalutho</string>

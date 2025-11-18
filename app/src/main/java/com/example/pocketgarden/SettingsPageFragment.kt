@@ -58,16 +58,16 @@ class SettingsPageFragment : Fragment() {
 
         val prefs = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
 
-// -------------------- LANGUAGE SPINNER --------------------
+        // Language spinner
         val spinner = binding.spinner
         val languages = resources.getStringArray(R.array.languages)
         val languageCodes = resources.getStringArray(R.array.language_codes)
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_item, languages)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         spinner.adapter = adapter
 
-// Pre-select saved language without triggering listener
+        // Pre-select saved language without triggering listener
         val savedLang = LocaleHelper.loadLocale(requireContext()) ?: "en"
         val savedIndex = languageCodes.indexOf(savedLang)
         if (savedIndex >= 0) {
@@ -96,7 +96,7 @@ class SettingsPageFragment : Fragment() {
         }
 
 
-        // -------------------- BIOMETRICS --------------------
+        // Biometrics
         val switchFingerprint = binding.switchFingerprint
         val isEnabled = prefs.getBoolean("biometric_enabled", false)
         switchFingerprint.isChecked = isEnabled
@@ -139,7 +139,7 @@ class SettingsPageFragment : Fragment() {
             }
         }
 
-        // -------------------- UPDATE PROFILE --------------------
+        // Update profile
         binding.button24.setOnClickListener {
             val googleAccount = GoogleSignIn.getLastSignedInAccount(requireContext())
             if (googleAccount != null) {
@@ -156,7 +156,7 @@ class SettingsPageFragment : Fragment() {
             }
         }
 
-        // -------------------- BOTTOM NAVIGATION --------------------
+        // Bottom navigation
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -187,7 +187,7 @@ class SettingsPageFragment : Fragment() {
             }
         }
 
-        // -------------------- LOGOUT --------------------
+        // Logout
         binding.Logoutbtn.setOnClickListener {
             requireActivity().getSharedPreferences("UserPrefs", 0).edit().clear().apply()
 
