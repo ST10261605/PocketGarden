@@ -11,7 +11,11 @@ import com.example.pocketgarden.data.local.PlantEntity
 import com.example.pocketgarden.databinding.DialogWaterReminderBinding
 import com.example.pocketgarden.repository.PlantRepository
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
+import java.util.Timer
+import java.util.TimerTask
 
 class WaterReminderDialogFragment(
     private val plant: PlantEntity,
@@ -21,12 +25,14 @@ class WaterReminderDialogFragment(
 
     private lateinit var binding: DialogWaterReminderBinding
     private var selectedTime: Long = System.currentTimeMillis()
+    private var timer: Timer? = null // Add timer property
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = DialogWaterReminderBinding.inflate(layoutInflater)
 
         setupFrequencyPicker()
         setupTimePicker()
+        setupCurrentTimeDisplay()
 
         return AlertDialog.Builder(requireContext())
             .setTitle("Set Water Reminder for ${plant.name}")
@@ -35,12 +41,73 @@ class WaterReminderDialogFragment(
                 setWaterReminder()
             }
             .setNegativeButton("Cancel") { _, _ ->
+                stopTimer()
                 dismiss()
             }
             .setNeutralButton("Remove Reminder") { _, _ ->
                 removeWaterReminder()
             }
+            .setNeutralButton("Test Notification") { _, _ -> // test button
+                testNotification()
+            }
             .create()
+    }
+
+    private fun setupCurrentTimeDisplay() {
+        // Update time immediately
+        updateCurrentTime()
+
+        // Update time every second
+        timer = Timer()
+        timer?.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                activity?.runOnUiThread {
+                    updateCurrentTime()
+                }
+            }
+        }, 0, 1000)
+    }
+
+    private fun updateCurrentTime() {
+        val currentTime = Calendar.getInstance().time
+        val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("EEE, MMM d, yyyy", Locale.getDefault())
+
+        // Check if views exist in layout before trying to update them
+        updateTimeDisplayOnButton(timeFormat.format(currentTime), dateFormat.format(currentTime))
+    }
+
+    private fun updateTimeDisplayOnButton(currentTime: String, currentDate: String) {
+        // Temporarily display time info on the time picker button
+        binding.timePickerButton.text = "Select Time\nNow: $currentTime"
+        binding.timePickerButton.textSize = 12f
+    }
+
+    private fun stopTimer() {
+        timer?.cancel()
+        timer = null
+    }
+
+    private fun testNotification() {
+        lifecycleScope.launch {
+            try {
+                // Test notification immediately
+                val testReminderId = "test_${System.currentTimeMillis()}"
+
+                // using notification helper to show a test notification
+                val notificationHelper = com.example.pocketgarden.notifications.NotificationHelper(requireContext())
+                notificationHelper.showWaterReminder(plant.name, testReminderId)
+
+                Toast.makeText(requireContext(), "Test notification sent!", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Test failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopTimer()
     }
 
     private fun setupFrequencyPicker() {
@@ -92,7 +159,9 @@ class WaterReminderDialogFragment(
 
     private fun updateTimeButton(calendar: Calendar) {
         val timeText = String.format("%02d:%02d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE))
-        binding.timePickerButton.text = timeText
+        // Reset button text to just show the selected time
+        binding.timePickerButton.text = "Selected: $timeText"
+        binding.timePickerButton.textSize = 14f
     }
 
     private fun setWaterReminder() {

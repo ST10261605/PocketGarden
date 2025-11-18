@@ -54,7 +54,7 @@ class NotificationHelper(private val context: Context) {
         }
     }
 
-    fun showWaterReminder(plantName: String, reminderId: String) {
+    fun showWaterReminder(plantName: String?, reminderId: String) {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -110,7 +110,7 @@ class NotificationHelper(private val context: Context) {
         notificationManager.notify(reminderId.hashCode(), notification)
     }
 
-    private fun createWateredAction(plantName: String, reminderId: String): PendingIntent {
+    private fun createWateredAction(plantName: String?, reminderId: String): PendingIntent {
         val intent = Intent(context, ReminderReceiver::class.java).apply {
             action = "ACTION_MARK_WATERED"
             putExtra("plant_name", plantName)

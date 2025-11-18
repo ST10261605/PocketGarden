@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.example.pocketgarden.data.local.PlantReminder
 import com.example.pocketgarden.data.local.ReminderType
 import com.example.pocketgarden.repository.PlantRepository
 import kotlinx.coroutines.CoroutineScope
